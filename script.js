@@ -275,6 +275,162 @@ document.querySelectorAll('.reveal').forEach(el => {
     observer.observe(el);
 });
 
+// ===== Mobile-specific Enhancements =====
+const isMobile = window.innerWidth <= 768;
+
+if (isMobile) {
+    // Add staggered animation delays to cards
+    document.querySelectorAll('.skill-category').forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.1}s`;
+    });
+
+    document.querySelectorAll('.project-card').forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.15}s`;
+    });
+
+    document.querySelectorAll('.timeline-item').forEach((item, index) => {
+        item.style.animationDelay = `${index * 0.2}s`;
+    });
+
+    // Touch ripple effect
+    function createRipple(event) {
+        const button = event.currentTarget;
+        const circle = document.createElement('span');
+        const diameter = Math.max(button.clientWidth, button.clientHeight);
+        const radius = diameter / 2;
+
+        const rect = button.getBoundingClientRect();
+        circle.style.width = circle.style.height = `${diameter}px`;
+        circle.style.left = `${event.touches[0].clientX - rect.left - radius}px`;
+        circle.style.top = `${event.touches[0].clientY - rect.top - radius}px`;
+        circle.classList.add('ripple');
+
+        const ripple = button.getElementsByClassName('ripple')[0];
+        if (ripple) {
+            ripple.remove();
+        }
+
+        button.appendChild(circle);
+
+        setTimeout(() => circle.remove(), 600);
+    }
+
+    // Add ripple to buttons
+    document.querySelectorAll('.btn').forEach(btn => {
+        btn.addEventListener('touchstart', createRipple);
+    });
+
+    // Add haptic-like visual feedback
+    document.querySelectorAll('.skill-category, .project-card, .education-card, .timeline-content').forEach(card => {
+        card.addEventListener('touchstart', function() {
+            this.style.transform = 'scale(0.98)';
+            this.style.transition = 'transform 0.1s ease';
+        });
+        
+        card.addEventListener('touchend', function() {
+            this.style.transform = 'scale(1)';
+        });
+    });
+
+    // Smooth scroll with offset for mobile
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const offset = 80; // Account for fixed navbar
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+    // Progressive loading for images/icons
+    const lazyElements = document.querySelectorAll('.skill-icon, .education-icon, .contact-icon, .project-placeholder');
+    
+    const lazyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'scale(1)';
+                lazyObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    lazyElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'scale(0.8)';
+        el.style.transition = 'all 0.4s ease';
+        lazyObserver.observe(el);
+    });
+
+    // Pull-to-refresh visual indicator (just visual, no actual refresh)
+    let touchStartY = 0;
+    const heroContent = document.querySelector('.hero-content');
+    
+    document.addEventListener('touchstart', (e) => {
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+        if (window.scrollY === 0 && heroContent) {
+            const touchY = e.touches[0].clientY;
+            const diff = touchY - touchStartY;
+            
+            if (diff > 0 && diff < 100) {
+                heroContent.style.transform = `translateY(${diff * 0.3}px)`;
+            }
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchend', () => {
+        if (heroContent) {
+            heroContent.style.transform = '';
+            heroContent.style.transition = 'transform 0.3s ease';
+        }
+    }, { passive: true });
+}
+
+// ===== Add Ripple CSS dynamically =====
+const rippleStyle = document.createElement('style');
+rippleStyle.textContent = `
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        transform: scale(0);
+        animation: ripple-animation 0.6s linear;
+        background-color: rgba(255, 255, 255, 0.3);
+        pointer-events: none;
+    }
+    
+    @keyframes ripple-animation {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+    
+    .btn {
+        position: relative;
+        overflow: hidden;
+    }
+`;
+document.head.appendChild(rippleStyle);
+
+// ===== Orientation Change Handler =====
+window.addEventListener('orientationchange', () => {
+    // Recalculate on orientation change
+    setTimeout(() => {
+        window.scrollTo(0, window.scrollY + 1);
+        window.scrollTo(0, window.scrollY - 1);
+    }, 100);
+});
+
 // ===== Console Easter Egg =====
 console.log('%c👋 Hey there, curious developer!', 'font-size: 24px; font-weight: bold;');
 console.log('%cLooks like you\'re checking out the code. Nice!', 'font-size: 14px;');

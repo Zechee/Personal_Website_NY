@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nathan Yin | Full Stack Developer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Cursor Glow Effect -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+    
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">Nathan</span>
+                <span class="logo-bracket">/&gt;</span>
+            </a>
+            <div class="nav-menu" id="navMenu">
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-bg">
+            <div class="hero-grid"></div>
+            <div class="hero-gradient"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <p class="hero-greeting">
+                    <span class="wave">👋</span> Hi there, I'm
+                </p>
+                <h1 class="hero-title">
+                    <span class="gradient-text">Nathan Yin</span>
+                </h1>
+                <div class="hero-subtitle">
+                    <span class="typing-text" id="typingText"></span>
+                    <span class="cursor">|</span>
+                </div>
+                <p class="hero-description">
+                    Dynamic and innovative Full Stack Developer with a proven track record 
+                    in software development, from concept through deployment. Specialized in 
+                    .NET Framework/Core, React, and modern web technologies.
+                </p>
+                <div class="hero-cta">
+                    <a href="#projects" class="btn btn-primary">
+                        <i class="fas fa-rocket"></i>
+                        View My Work
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-envelope"></i>
+                        Get In Touch
+                    </a>
+                </div>
+                <div class="hero-social">
+                    <a href="https://github.com/Zechee" target="_blank" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                    <a href="mailto:zeqiyin@aol.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="code-window">
+                    <div class="code-header">
+                        <div class="code-dots">
+                            <span class="dot red"></span>
+                            <span class="dot yellow"></span>
+                            <span class="dot green"></span>
+                        </div>
+                        <span class="code-title">developer.js</span>
+                    </div>
+                    <div class="code-body">
+                        <pre><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
+    <span class="code-property">name</span>: <span class="code-string">"Nathan Yin"</span>,
+    <span class="code-property">role</span>: <span class="code-string">"Full Stack Developer"</span>,
+    <span class="code-property">location</span>: <span class="code-string">"Auckland, NZ"</span>,
+    <span class="code-property">skills</span>: [
+        <span class="code-string">".NET"</span>, <span class="code-string">"React"</span>, <span class="code-string">"Node.js"</span>,
+        <span class="code-string">"Python"</span>, <span class="code-string">"Docker"</span>, <span class="code-string">"AWS"</span>
+    ],
+    <span class="code-property">passions</span>: [
+        <span class="code-string">"Clean Code"</span>,
+        <span class="code-string">"Problem Solving"</span>,
+        <span class="code-string">"Innovation"</span>
+    ]
+};
+
+<span class="code-keyword">while</span> (<span class="code-variable">developer</span>.<span class="code-property">isAwake</span>) {
+    <span class="code-variable">developer</span>.<span class="code-method">code</span>();
+    <span class="code-variable">developer</span>.<span class="code-method">learn</span>();
+    <span class="code-variable">developer</span>.<span class="code-method">innovate</span>();
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <a href="#about" class="scroll-indicator">
+            <span>Scroll</span>
+            <i class="fas fa-chevron-down"></i>
+        </a>
+    </section>
+
+    <!-- About Section -->
+    <section class="section about" id="about">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">01.</span>
+                About Me
+            </h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>
+                        I'm a <strong>Full Stack Developer</strong> with comprehensive experience in both 
+                        academic and industrial settings. With a <strong>Master of Information Technology</strong> 
+                        and recognition for academic excellence, I bring a solid foundation to every project.
+                    </p>
+                    <p>
+                        My expertise encompasses the full <strong>Software Development Life Cycle (SDLC)</strong>, 
+                        specializing in front-end and back-end integration using RESTful APIs and JSON, 
+                        database optimization, and application security.
+                    </p>
+                    <p>
+                        I'm passionate about fostering team collaboration and enhancing system performance 
+                        through continuous technological advancement. Currently based in <strong>Auckland, New Zealand</strong>.
+                    </p>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-code"></i>
+                            <span>3+ Years Experience</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>5+ Products Launched</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-award"></i>
+                            <span>Academic Excellence Award</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-frame">
+                        <div class="image-placeholder">
+                            <i class="fas fa-user-astronaut"></i>
+                        </div>
+                        <div class="frame-decoration"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section skills" id="skills">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">02.</span>
+                Skills & Technologies
+            </h2>
+            <p class="section-description">
+                I'm an experienced software engineer with expertise in developing scalable applications 
+                and a knack for modern web development using both backend and frontend technologies.
+            </p>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Backend Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">.NET Framework/Core</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Python Flask</span>
+                        <span class="skill-tag">Java SpringBoot</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">GraphQL</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-palette"></i>
+                    </div>
+                    <h3>Frontend Development</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Redux</span>
+                        <span class="skill-tag">Vue.js</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                        <span class="skill-tag">Tailwind CSS</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Database & Storage</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MySQL</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">Amazon RDS</span>
+                        <span class="skill-tag">Redis</span>
+                        <span class="skill-tag">SQL Server</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>DevOps & Tools</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">GitHub</span>
+                        <span class="skill-tag">Azure DevOps</span>
+                        <span class="skill-tag">CI/CD</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Nginx</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Methodologies</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Agile</span>
+                        <span class="skill-tag">Scrum</span>
+                        <span class="skill-tag">TDD</span>
+                        <span class="skill-tag">DDD</span>
+                        <span class="skill-tag">SOLID</span>
+                        <span class="skill-tag">Jira</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <div class="skill-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Other Skills</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JWT Auth</span>
+                        <span class="skill-tag">IIS</span>
+                        <span class="skill-tag">Apache</span>
+                        <span class="skill-tag">Windows Server</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="section experience" id="experience">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">03.</span>
+                Work Experience
+            </h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="job-title">Software Engineer</h3>
+                            <span class="company">Wuhan YINGJIA Technology Co., Ltd.</span>
+                        </div>
+                        <div class="timeline-meta">
+                            <span class="location"><i class="fas fa-map-marker-alt"></i> Wuhan, China</span>
+                            <span class="duration"><i class="fas fa-calendar"></i> December 2022 - Present</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Led the development and launch of over five innovative software products, significantly enhancing user experience and performance across existing modules.</li>
+                            <li>Demonstrated expertise in .NET Framework 4.0+, developing robust, scalable solutions.</li>
+                            <li>Optimized databases and improved UI/UX design, resulting in increased efficiency and satisfaction.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="job-title">Academic Tutor</h3>
+                            <span class="company">Southern Institute of Technology</span>
+                        </div>
+                        <div class="timeline-meta">
+                            <span class="location"><i class="fas fa-map-marker-alt"></i> Invercargill, New Zealand</span>
+                            <span class="duration"><i class="fas fa-calendar"></i> September 2021 - November 2022</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Developed and delivered lectures on complex technical topics, aligning with industry practices.</li>
+                            <li>Mentored students in C# .NET and Git, contributing to their success as junior developers.</li>
+                            <li>Contributed to academic research on IT development and problem-solving.</li>
+                            <li>Collaborated with peers to keep the curriculum updated with industry trends.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="job-title">Full Stack Developer</h3>
+                            <span class="company">Guangzhou Yun Xiang Store Information Technology Co., Ltd.</span>
+                        </div>
+                        <div class="timeline-meta">
+                            <span class="location"><i class="fas fa-map-marker-alt"></i> (Remote) Guangzhou, China</span>
+                            <span class="duration"><i class="fas fa-calendar"></i> August 2020 - August 2021</span>
+                        </div>
+                        <ul class="timeline-details">
+                            <li>Engaged in the full Software Development Life Cycle, designing and implementing front-end components integrated with back-end systems using RESTful APIs.</li>
+                            <li>Demonstrated proficiency in database optimization and application security, managed software configurations using Git.</li>
+                            <li>Enhanced team collaboration through effective remote communication, contributing to a cohesive team environment.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section projects" id="projects">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">04.</span>
+                Featured Projects
+            </h2>
+            <p class="section-description">
+                As a Full Stack Developer with a strong foundation in the .NET Core and .NET Framework, 
+                I excel in designing, building, and maintaining efficient, reusable, and reliable code.
+            </p>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <a href="https://admin.yunshop.yzq.nz" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="project-placeholder">
+                            <i class="fas fa-store"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">YunXiang Store Management System</h3>
+                        <p class="project-description">
+                            A comprehensive store management solution with inventory control, 
+                            sales tracking, and payment integration.
+                        </p>
+                        <div class="project-tech">
+                            <span>ASP.NET Core</span>
+                            <span>WebAPI</span>
+                            <span>Redis</span>
+                            <span>JWT</span>
+                        </div>
+                        <div class="project-credentials">
+                            <small>Demo: yunshop / yunshop</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <a href="https://yxwms.yzq.nz" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="project-placeholder">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">YunXiang Warehouse Management</h3>
+                        <p class="project-description">
+                            Enterprise-level warehouse management with real-time inventory tracking, 
+                            order processing, and reporting.
+                        </p>
+                        <div class="project-tech">
+                            <span>.NET MVC</span>
+                            <span>SqlSugar</span>
+                            <span>Bootstrap</span>
+                            <span>AdminLTE</span>
+                        </div>
+                        <div class="project-credentials">
+                            <small>Demo: admin / 123456</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <a href="https://yxcms.yzq.nz" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="project-placeholder">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">YunXiang CMS</h3>
+                        <p class="project-description">
+                            Content management system with rich text editing, media management, 
+                            and analytics dashboard.
+                        </p>
+                        <div class="project-tech">
+                            <span>.NET 6.0</span>
+                            <span>Dapper</span>
+                            <span>Layui</span>
+                            <span>Echarts</span>
+                        </div>
+                        <div class="project-credentials">
+                            <small>Demo: admin / 123456</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <a href="https://soems.yzq.nz" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="project-placeholder">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Student Online Exam System</h3>
+                        <p class="project-description">
+                            Online examination platform with automated grading, question banks, 
+                            and performance analytics.
+                        </p>
+                        <div class="project-tech">
+                            <span>ASP.NET Web Forms</span>
+                            <span>Entity Framework</span>
+                            <span>jQuery</span>
+                        </div>
+                        <div class="project-credentials">
+                            <small>Demo: admin or student_1 / 123456</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <a href="https://sapms.yzq.nz" target="_blank" class="project-link">
+                                <i class="fas fa-external-link-alt"></i>
+                            </a>
+                        </div>
+                        <div class="project-placeholder">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <div class="project-info">
+                        <h3 class="project-title">Academic Performance System</h3>
+                        <p class="project-description">
+                            Comprehensive academic management with grade tracking, student analytics, 
+                            and performance reports.
+                        </p>
+                        <div class="project-tech">
+                            <span>ASP.NET</span>
+                            <span>.NET Framework</span>
+                            <span>Bootstrap</span>
+                        </div>
+                        <div class="project-credentials">
+                            <small>Demo: admin or 20221011 / 123456</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="section education" id="education">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">05.</span>
+                Education
+            </h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3 class="degree">Master of Information Technology</h3>
+                        <p class="school">Southern Institute of Technology</p>
+                        <div class="education-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Invercargill, New Zealand</span>
+                            <span><i class="fas fa-calendar"></i> Graduated 2022</span>
+                        </div>
+                        <div class="education-award">
+                            <i class="fas fa-trophy"></i>
+                            <span>SBS Bank Award for Academic Excellence</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="education-card">
+                    <div class="education-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div class="education-content">
+                        <h3 class="degree">Bachelor of Commerce</h3>
+                        <p class="school">Southern Institute of Technology</p>
+                        <div class="education-meta">
+                            <span><i class="fas fa-map-marker-alt"></i> Invercargill, New Zealand</span>
+                            <span><i class="fas fa-calendar"></i> Graduated 2019</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="title-number">06.</span>
+                Get In Touch
+            </h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Connect!</h3>
+                    <p>
+                        I'm always interested in hearing about new opportunities, 
+                        interesting projects, or just having a chat about technology.
+                    </p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Location</h4>
+                                <p>Auckland CBD, Auckland 1010</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Email</h4>
+                                <p><a href="mailto:zeqiyin@aol.com">zeqiyin@aol.com</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Phone</h4>
+                                <p>02 113344 06</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-social">
+                        <a href="https://github.com/Zechee" target="_blank" class="social-btn">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="social-btn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:zeqiyin@aol.com" class="social-btn">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="contact-form-wrapper">
+                    <form class="contact-form" id="contactForm" action="https://formspree.io/f/xjvnooaz" method="POST">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-paper-plane"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-text">
+                    Designed & Built by <span class="gradient-text">Nathan Yin</span>
+                </p>
+                <p class="footer-copyright">
+                    © 2025 All Rights Reserved
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

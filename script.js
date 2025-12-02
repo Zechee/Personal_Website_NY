@@ -8,10 +8,10 @@ const cursorGlow = document.getElementById('cursorGlow');
 
 // ===== Typing Animation =====
 const roles = [
-    'Full Stack Developer',
-    'Software Engineer',
+    'Software Developer',
+    'Analyst Developer @ FNZ',
     '.NET Specialist',
-    'Problem Solver',
+    'Full Stack Engineer',
     'Tech Enthusiast'
 ];
 

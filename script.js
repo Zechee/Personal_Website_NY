@@ -1,3 +1,120 @@
+// ===== Particles System =====
+class ParticleSystem {
+    constructor(canvas) {
+        this.canvas = canvas;
+        this.ctx = canvas.getContext('2d');
+        this.particles = [];
+        this.mouse = { x: null, y: null, radius: 150 };
+        this.resize();
+        this.init();
+        this.bindEvents();
+        this.animate();
+    }
+
+    resize() {
+        this.canvas.width = window.innerWidth;
+        this.canvas.height = window.innerHeight;
+    }
+
+    init() {
+        const numberOfParticles = Math.floor((this.canvas.width * this.canvas.height) / 15000);
+        this.particles = [];
+        for (let i = 0; i < numberOfParticles; i++) {
+            this.particles.push(new Particle(this.canvas));
+        }
+    }
+
+    bindEvents() {
+        window.addEventListener('resize', () => {
+            this.resize();
+            this.init();
+        });
+
+        window.addEventListener('mousemove', (e) => {
+            this.mouse.x = e.x;
+            this.mouse.y = e.y;
+        });
+
+        window.addEventListener('mouseout', () => {
+            this.mouse.x = null;
+            this.mouse.y = null;
+        });
+    }
+
+    animate() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        
+        for (let i = 0; i < this.particles.length; i++) {
+            this.particles[i].update(this.canvas, this.mouse);
+            this.particles[i].draw(this.ctx);
+
+            for (let j = i + 1; j < this.particles.length; j++) {
+                const dx = this.particles[i].x - this.particles[j].x;
+                const dy = this.particles[i].y - this.particles[j].y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < 120) {
+                    const opacity = (1 - distance / 120) * 0.15;
+                    this.ctx.strokeStyle = `rgba(108, 99, 255, ${opacity})`;
+                    this.ctx.lineWidth = 1;
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
+                    this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
+                    this.ctx.stroke();
+                }
+            }
+        }
+
+        requestAnimationFrame(() => this.animate());
+    }
+}
+
+class Particle {
+    constructor(canvas) {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 0.5;
+        this.speedX = (Math.random() - 0.5) * 0.5;
+        this.speedY = (Math.random() - 0.5) * 0.5;
+        this.opacity = Math.random() * 0.5 + 0.1;
+    }
+
+    update(canvas, mouse) {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+
+        // Mouse interaction
+        if (mouse.x !== null && mouse.y !== null) {
+            const dx = mouse.x - this.x;
+            const dy = mouse.y - this.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < mouse.radius) {
+                const force = (mouse.radius - distance) / mouse.radius;
+                this.x -= dx * force * 0.02;
+                this.y -= dy * force * 0.02;
+            }
+        }
+    }
+
+    draw(ctx) {
+        ctx.fillStyle = `rgba(108, 99, 255, ${this.opacity})`;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+    }
+}
+
+// Initialize particles
+const particlesCanvas = document.getElementById('particlesCanvas');
+if (particlesCanvas && window.innerWidth > 768) {
+    new ParticleSystem(particlesCanvas);
+}
+
 // ===== DOM Elements =====
 const navbar = document.getElementById('navbar');
 const navToggle = document.getElementById('navToggle');
@@ -5,6 +122,7 @@ const navMenu = document.getElementById('navMenu');
 const navLinks = document.querySelectorAll('.nav-link');
 const typingText = document.getElementById('typingText');
 const cursorGlow = document.getElementById('cursorGlow');
+const backToTop = document.getElementById('backToTop');
 
 // ===== Typing Animation =====
 const roles = [
@@ -35,22 +153,19 @@ function typeRole() {
 
     if (!isDeleting && charIndex === currentRole.length) {
         isDeleting = true;
-        typingSpeed = 2000; // Pause at end
+        typingSpeed = 2000;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         roleIndex = (roleIndex + 1) % roles.length;
-        typingSpeed = 500; // Pause before next word
+        typingSpeed = 500;
     }
 
     setTimeout(typeRole, typingSpeed);
 }
 
-// Start typing animation
 setTimeout(typeRole, 1000);
 
 // ===== Navbar Scroll Effect =====
-let lastScroll = 0;
-
 window.addEventListener('scroll', () => {
     const currentScroll = window.pageYOffset;
     
@@ -59,8 +174,15 @@ window.addEventListener('scroll', () => {
     } else {
         navbar.classList.remove('scrolled');
     }
-    
-    lastScroll = currentScroll;
+
+    // Back to top visibility
+    if (backToTop) {
+        if (currentScroll > 500) {
+            backToTop.classList.add('visible');
+        } else {
+            backToTop.classList.remove('visible');
+        }
+    }
 });
 
 // ===== Mobile Navigation =====
@@ -70,7 +192,6 @@ navToggle.addEventListener('click', () => {
     document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
 });
 
-// Close mobile menu when clicking a link
 navLinks.forEach(link => {
     link.addEventListener('click', () => {
         navToggle.classList.remove('active');
@@ -87,15 +208,14 @@ function highlightNavLink() {
     
     sections.forEach(section => {
         const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
+        const sectionTop = section.offsetTop - 120;
         const sectionId = section.getAttribute('id');
         const navLink = document.querySelector(`.nav-link[href="#${sectionId}"]`);
         
         if (navLink) {
             if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navLinks.forEach(link => link.classList.remove('active'));
                 navLink.classList.add('active');
-            } else {
-                navLink.classList.remove('active');
             }
         }
     });
@@ -115,54 +235,172 @@ document.addEventListener('mousemove', (e) => {
 });
 
 function animateGlow() {
-    glowX += (mouseX - glowX) * 0.1;
-    glowY += (mouseY - glowY) * 0.1;
+    glowX += (mouseX - glowX) * 0.08;
+    glowY += (mouseY - glowY) * 0.08;
     
-    cursorGlow.style.left = glowX + 'px';
-    cursorGlow.style.top = glowY + 'px';
+    if (cursorGlow) {
+        cursorGlow.style.left = glowX + 'px';
+        cursorGlow.style.top = glowY + 'px';
+    }
     
     requestAnimationFrame(animateGlow);
 }
 
-// Only enable cursor glow on desktop
 if (window.innerWidth > 768) {
     animateGlow();
-} else {
+} else if (cursorGlow) {
     cursorGlow.style.display = 'none';
 }
 
 // ===== Scroll Reveal Animation =====
-function revealOnScroll() {
-    const reveals = document.querySelectorAll('.reveal');
-    const windowHeight = window.innerHeight;
-    
-    reveals.forEach(element => {
-        const elementTop = element.getBoundingClientRect().top;
-        const revealPoint = 150;
-        
-        if (elementTop < windowHeight - revealPoint) {
-            element.classList.add('active');
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('active');
         }
+    });
+}, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+});
+
+document.querySelectorAll('.reveal').forEach(el => {
+    revealObserver.observe(el);
+});
+
+// ===== Animated Counter =====
+function animateCounters() {
+    const counters = document.querySelectorAll('.stat-number');
+    
+    counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-count'));
+        const duration = 2000;
+        const start = 0;
+        const startTime = performance.now();
+        
+        function updateCounter(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Ease out cubic
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(start + (target - start) * easeOut);
+            
+            counter.textContent = current;
+            
+            if (progress < 1) {
+                requestAnimationFrame(updateCounter);
+            }
+        }
+        
+        requestAnimationFrame(updateCounter);
     });
 }
 
-// Add reveal class to elements
-document.querySelectorAll('.section-title, .skill-category, .timeline-item, .project-card, .education-card').forEach(el => {
-    el.classList.add('reveal');
+// Trigger counter when about section is visible
+const aboutSection = document.getElementById('about');
+if (aboutSection) {
+    const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                animateCounters();
+                counterObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.3 });
+    
+    counterObserver.observe(aboutSection);
+}
+
+// ===== Skill Bar Animation =====
+function animateSkillBars() {
+    const bars = document.querySelectorAll('.skill-bar-fill');
+    bars.forEach(bar => {
+        const width = bar.getAttribute('data-width');
+        bar.style.width = width + '%';
+    });
+}
+
+const skillsSection = document.getElementById('skills');
+if (skillsSection) {
+    const skillObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                setTimeout(animateSkillBars, 300);
+                skillObserver.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.2 });
+    
+    skillObserver.observe(skillsSection);
+}
+
+// ===== Experience / Education Tabs =====
+const expTabs = document.querySelectorAll('.exp-tab');
+const experienceTab = document.getElementById('experienceTab');
+const educationTab = document.getElementById('educationTab');
+
+expTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        expTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const tabName = tab.getAttribute('data-tab');
+        
+        if (tabName === 'experience') {
+            experienceTab.classList.remove('hidden');
+            educationTab.classList.add('hidden');
+        } else {
+            experienceTab.classList.add('hidden');
+            educationTab.classList.remove('hidden');
+        }
+
+        // Re-trigger reveal animations for newly visible items
+        document.querySelectorAll('.timeline-wrapper:not(.hidden) .reveal').forEach(el => {
+            el.classList.remove('active');
+            setTimeout(() => {
+                revealObserver.observe(el);
+            }, 50);
+        });
+    });
 });
 
-window.addEventListener('scroll', revealOnScroll);
-revealOnScroll(); // Initial check
+// ===== Portfolio Filter =====
+const filterBtns = document.querySelectorAll('.filter-btn');
+const portfolioItems = document.querySelectorAll('.portfolio-item');
 
-// ===== Smooth Scroll for Safari =====
+filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        const filter = btn.getAttribute('data-filter');
+        
+        portfolioItems.forEach(item => {
+            const category = item.getAttribute('data-category');
+            
+            if (filter === 'all' || category === filter) {
+                item.classList.remove('hidden');
+                item.style.animation = 'fadeInUp 0.5s ease forwards';
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+    });
+});
+
+// ===== Smooth Scroll =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href'));
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const offset = 80;
+            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
             });
         }
     });
@@ -179,23 +417,19 @@ if (contactForm) {
         const submitBtn = this.querySelector('button[type="submit"]');
         const originalBtnText = submitBtn.innerHTML;
         
-        // Show loading state
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Sending...</span>';
         submitBtn.disabled = true;
         
         try {
             const response = await fetch(this.action, {
                 method: 'POST',
                 body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
+                headers: { 'Accept': 'application/json' }
             });
             
             if (response.ok) {
-                // Success
-                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message Sent!';
-                submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> <span>Message Sent!</span>';
+                submitBtn.style.background = 'linear-gradient(135deg, #00d4aa 0%, #10b981 100%)';
                 this.reset();
                 
                 setTimeout(() => {
@@ -207,7 +441,7 @@ if (contactForm) {
                 throw new Error('Failed to send message');
             }
         } catch (error) {
-            submitBtn.innerHTML = '<i class="fas fa-times"></i> Error!';
+            submitBtn.innerHTML = '<i class="fas fa-times"></i> <span>Error!</span>';
             submitBtn.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
             
             setTimeout(() => {
@@ -219,219 +453,41 @@ if (contactForm) {
     });
 }
 
-// ===== Code Window 3D Tilt Effect =====
-const codeWindow = document.querySelector('.code-window');
-
-if (codeWindow && window.innerWidth > 768) {
-    codeWindow.addEventListener('mousemove', (e) => {
-        const rect = codeWindow.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 20;
-        const rotateY = (centerX - x) / 20;
-        
-        codeWindow.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
-    });
-    
-    codeWindow.addEventListener('mouseleave', () => {
-        codeWindow.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg)';
-    });
-}
-
-// ===== Parallax Effect for Hero =====
-const heroSection = document.querySelector('.hero');
-
-if (heroSection && window.innerWidth > 768) {
+// ===== Parallax Effect for Hero Orbs =====
+if (window.innerWidth > 768) {
     window.addEventListener('scroll', () => {
         const scrolled = window.pageYOffset;
         const heroContent = document.querySelector('.hero-content');
         
         if (heroContent && scrolled < window.innerHeight) {
-            heroContent.style.transform = `translateY(${scrolled * 0.3}px)`;
-            heroContent.style.opacity = 1 - (scrolled / window.innerHeight);
+            heroContent.style.transform = `translateY(${scrolled * 0.2}px)`;
+            heroContent.style.opacity = 1 - (scrolled / (window.innerHeight * 0.8));
         }
     });
 }
 
-// ===== Intersection Observer for Animations =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('active');
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.reveal').forEach(el => {
-    observer.observe(el);
-});
-
-// ===== Mobile-specific Enhancements =====
-const isMobile = window.innerWidth <= 768;
-
-if (isMobile) {
-    // Add staggered animation delays to cards
-    document.querySelectorAll('.skill-category').forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.1}s`;
-    });
-
-    document.querySelectorAll('.project-card').forEach((card, index) => {
-        card.style.animationDelay = `${index * 0.15}s`;
-    });
-
-    document.querySelectorAll('.timeline-item').forEach((item, index) => {
-        item.style.animationDelay = `${index * 0.2}s`;
-    });
-
-    // Touch ripple effect
-    function createRipple(event) {
-        const button = event.currentTarget;
-        const circle = document.createElement('span');
-        const diameter = Math.max(button.clientWidth, button.clientHeight);
-        const radius = diameter / 2;
-
-        const rect = button.getBoundingClientRect();
-        circle.style.width = circle.style.height = `${diameter}px`;
-        circle.style.left = `${event.touches[0].clientX - rect.left - radius}px`;
-        circle.style.top = `${event.touches[0].clientY - rect.top - radius}px`;
-        circle.classList.add('ripple');
-
-        const ripple = button.getElementsByClassName('ripple')[0];
-        if (ripple) {
-            ripple.remove();
-        }
-
-        button.appendChild(circle);
-
-        setTimeout(() => circle.remove(), 600);
-    }
-
-    // Add ripple to buttons
-    document.querySelectorAll('.btn').forEach(btn => {
-        btn.addEventListener('touchstart', createRipple);
-    });
-
-    // Add haptic-like visual feedback
-    document.querySelectorAll('.skill-category, .project-card, .education-card, .timeline-content').forEach(card => {
-        card.addEventListener('touchstart', function() {
-            this.style.transform = 'scale(0.98)';
-            this.style.transition = 'transform 0.1s ease';
+// ===== Tilt Effect on Portfolio Cards =====
+if (window.innerWidth > 768) {
+    document.querySelectorAll('.portfolio-card').forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            const rotateX = (y - centerY) / 25;
+            const rotateY = (centerX - x) / 25;
+            
+            card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
         });
         
-        card.addEventListener('touchend', function() {
-            this.style.transform = 'scale(1)';
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)';
         });
     });
-
-    // Smooth scroll with offset for mobile
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const offset = 80; // Account for fixed navbar
-                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Progressive loading for images/icons
-    const lazyElements = document.querySelectorAll('.skill-icon, .education-icon, .contact-icon, .project-placeholder');
-    
-    const lazyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'scale(1)';
-                lazyObserver.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    lazyElements.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'scale(0.8)';
-        el.style.transition = 'all 0.4s ease';
-        lazyObserver.observe(el);
-    });
-
-    // Pull-to-refresh visual indicator (just visual, no actual refresh)
-    let touchStartY = 0;
-    const heroContent = document.querySelector('.hero-content');
-    
-    document.addEventListener('touchstart', (e) => {
-        touchStartY = e.touches[0].clientY;
-    }, { passive: true });
-
-    document.addEventListener('touchmove', (e) => {
-        if (window.scrollY === 0 && heroContent) {
-            const touchY = e.touches[0].clientY;
-            const diff = touchY - touchStartY;
-            
-            if (diff > 0 && diff < 100) {
-                heroContent.style.transform = `translateY(${diff * 0.3}px)`;
-            }
-        }
-    }, { passive: true });
-
-    document.addEventListener('touchend', () => {
-        if (heroContent) {
-            heroContent.style.transform = '';
-            heroContent.style.transition = 'transform 0.3s ease';
-        }
-    }, { passive: true });
 }
-
-// ===== Add Ripple CSS dynamically =====
-const rippleStyle = document.createElement('style');
-rippleStyle.textContent = `
-    .ripple {
-        position: absolute;
-        border-radius: 50%;
-        transform: scale(0);
-        animation: ripple-animation 0.6s linear;
-        background-color: rgba(255, 255, 255, 0.3);
-        pointer-events: none;
-    }
-    
-    @keyframes ripple-animation {
-        to {
-            transform: scale(4);
-            opacity: 0;
-        }
-    }
-    
-    .btn {
-        position: relative;
-        overflow: hidden;
-    }
-`;
-document.head.appendChild(rippleStyle);
-
-// ===== Orientation Change Handler =====
-window.addEventListener('orientationchange', () => {
-    // Recalculate on orientation change
-    setTimeout(() => {
-        window.scrollTo(0, window.scrollY + 1);
-        window.scrollTo(0, window.scrollY - 1);
-    }, 100);
-});
 
 // ===== Console Easter Egg =====
 console.log('%c👋 Hey there, curious developer!', 'font-size: 24px; font-weight: bold;');
 console.log('%cLooks like you\'re checking out the code. Nice!', 'font-size: 14px;');
-console.log('%cFeel free to reach out: zeqiyin@aol.com', 'font-size: 14px; color: #6366f1;');
+console.log('%cFeel free to reach out: zeqiyin@aol.com', 'font-size: 14px; color: #6c63ff;');

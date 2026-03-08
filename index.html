@@ -8,28 +8,30 @@
     <link rel="apple-touch-icon" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Particles Canvas -->
+    <canvas id="particlesCanvas"></canvas>
+    
     <!-- Cursor Glow Effect -->
     <div class="cursor-glow" id="cursorGlow"></div>
-    
+
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
-                <span class="logo-bracket">&lt;</span>
-                <span class="logo-text">Nathan</span>
-                <span class="logo-bracket">/&gt;</span>
+                <span class="logo-icon"><i class="fas fa-code"></i></span>
+                <span class="logo-text">Nathan<span class="logo-dot">.</span></span>
             </a>
             <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#skills" class="nav-link">Skills</a>
                 <a href="#experience" class="nav-link">Experience</a>
-                <a href="#projects" class="nav-link">Projects</a>
-                <a href="#education" class="nav-link">Education</a>
+                <a href="#projects" class="nav-link">Portfolio</a>
                 <a href="#contact" class="nav-link">Contact</a>
             </div>
             <button class="nav-toggle" id="navToggle">
@@ -41,137 +43,134 @@
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <section class="hero" id="home">
         <div class="hero-bg">
-            <div class="hero-grid"></div>
-            <div class="hero-gradient"></div>
+            <div class="hero-gradient-orb orb-1"></div>
+            <div class="hero-gradient-orb orb-2"></div>
+            <div class="hero-gradient-orb orb-3"></div>
         </div>
         <div class="hero-content">
-            <div class="hero-text">
-                <p class="hero-greeting">
-                    <span class="wave">👋</span> Hi there, I'm
-                </p>
-                <h1 class="hero-title">
-                    <span class="gradient-text">Nathan Yin</span>
-                </h1>
-                <div class="hero-subtitle">
-                    <span class="typing-text" id="typingText"></span>
-                    <span class="cursor">|</span>
-                </div>
-                <p class="hero-description">
-                    As a diligent and enthusiastic software developer with over three years of experience, 
-                    I bring a wealth of expertise in .NET development. My proficiency spans C#, CSS3, HTML, 
-                    JavaScript, JQuery, React, MS SQL, MySQL, and I am adept in tools like Jira, GitHub, 
-                    Azure DevOps, and AWS Cloud.
-                </p>
-                <div class="hero-cta">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-rocket"></i>
-                        View My Work
-                    </a>
-                    <a href="#contact" class="btn btn-secondary">
-                        <i class="fas fa-envelope"></i>
-                        Get In Touch
-                    </a>
-                </div>
-                <div class="hero-social">
-                    <a href="https://github.com/Zechee" target="_blank" class="social-link" title="GitHub">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.linkedin.com/in/zeqiyin/" target="_blank" class="social-link" title="LinkedIn">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a href="mailto:zeqiyin@aol.com" class="social-link" title="Email">
-                        <i class="fas fa-envelope"></i>
-                    </a>
-                </div>
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Available for Work
             </div>
-            <div class="hero-visual">
-                <div class="code-window">
-                    <div class="code-header">
-                        <div class="code-dots">
-                            <span class="dot red"></span>
-                            <span class="dot yellow"></span>
-                            <span class="dot green"></span>
-                        </div>
-                        <span class="code-title">developer.js</span>
-                    </div>
-                    <div class="code-body">
-                        <pre><code><span class="code-keyword">const</span> <span class="code-variable">developer</span> = {
-    <span class="code-property">name</span>: <span class="code-string">"Nathan Yin"</span>,
-    <span class="code-property">role</span>: <span class="code-string">"Software Developer"</span>,
-    <span class="code-property">location</span>: <span class="code-string">"Auckland, NZ"</span>,
-    <span class="code-property">skills</span>: [
-        <span class="code-string">"C#"</span>, <span class="code-string">"JavaScript"</span>, <span class="code-string">"React"</span>,
-        <span class="code-string">"SQL"</span>, <span class="code-string">"Git"</span>, <span class="code-string">"Azure"</span>
-    ],
-    <span class="code-property">passions</span>: [
-        <span class="code-string">"Clean Code"</span>,
-        <span class="code-string">"Problem Solving"</span>,
-        <span class="code-string">"Innovation"</span>
-    ]
-};
-
-<span class="code-keyword">while</span> (<span class="code-variable">developer</span>.<span class="code-property">isAwake</span>) {
-    <span class="code-variable">developer</span>.<span class="code-method">code</span>();
-    <span class="code-variable">developer</span>.<span class="code-method">learn</span>();
-    <span class="code-variable">developer</span>.<span class="code-method">innovate</span>();
-}</code></pre>
-                    </div>
-                </div>
+            <p class="hero-greeting">Hello, I'm</p>
+            <h1 class="hero-title">
+                <span class="title-line">Nathan <span class="gradient-text">Yin</span></span>
+            </h1>
+            <h2 class="hero-role">
+                <span class="typing-text" id="typingText"></span>
+                <span class="cursor">|</span>
+            </h2>
+            <p class="hero-description">
+                Passionate software developer with 4+ years of experience in .NET and full-stack development. 
+                Expertise in C#, Python, JavaScript, SQL, and cloud technologies. Familiar with LLM integration, 
+                RAG pipelines, and AI-assisted development. Currently building enterprise-scale wealth management 
+                platforms as an Analyst Developer at FNZ in Auckland.
+            </p>
+            <div class="hero-cta">
+                <a href="#contact" class="btn btn-primary">
+                    <span>Get In Touch</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+                <a href="#experience" class="btn btn-outline">
+                    <span>View Experience</span>
+                    <i class="fas fa-briefcase"></i>
+                </a>
+            </div>
+            <div class="hero-social">
+                <a href="https://github.com/Zechee" target="_blank" class="social-link" title="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/zeqiyin/" target="_blank" class="social-link" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:zeqiyin@aol.com" class="social-link" title="Email">
+                    <i class="fas fa-envelope"></i>
+                </a>
             </div>
         </div>
-        <a href="#about" class="scroll-indicator">
-            <span>Scroll</span>
-            <i class="fas fa-chevron-down"></i>
-        </a>
+        <div class="hero-scroll">
+            <div class="mouse">
+                <div class="mouse-wheel"></div>
+            </div>
+            <span>Scroll Down</span>
+        </div>
     </section>
 
     <!-- About Section -->
     <section class="section about" id="about">
         <div class="container">
-            <h2 class="section-title">
-                <span class="title-number">01.</span>
-                About Me
-            </h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I'm a <strong>Software Developer</strong> at <strong>FNZ Group</strong> with over three years 
-                        of experience in .NET development. I've been instrumental in developing diverse projects like 
-                        enterprise ERPs, online stores, and corporate websites.
-                    </p>
-                    <p>
-                        My proficiency spans a diverse range of skills including <strong>C#, JavaScript, React, 
-                        MS SQL, MySQL</strong>, and I am adept in tools like <strong>Jira, GitHub, Azure DevOps, 
-                        and AWS Cloud</strong>.
-                    </p>
-                    <p>
-                        I'm passionately curious, with a strong desire to learn and grow, constantly seeking out 
-                        new technologies and methodologies. Currently based in <strong>Auckland, New Zealand</strong>.
-                    </p>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-code"></i>
-                            <span>3+ Years Experience</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-project-diagram"></i>
-                            <span>5+ Products Launched</span>
-                        </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-award"></i>
-                            <span>Academic Excellence Award</span>
-                        </div>
-                    </div>
+            <div class="section-header">
+                <span class="section-subtitle">Who I Am</span>
+                <h2 class="section-title">About Me</h2>
+                <div class="title-decoration">
+                    <span class="decoration-line"></span>
+                    <span class="decoration-dot"></span>
+                    <span class="decoration-line"></span>
                 </div>
-                <div class="about-image">
-                    <div class="image-frame">
+            </div>
+            <div class="about-content">
+                <div class="about-image reveal">
+                    <div class="image-wrapper">
                         <div class="image-placeholder">
                             <i class="fas fa-user-astronaut"></i>
                         </div>
-                        <div class="frame-decoration"></div>
+                        <div class="image-border"></div>
+                        <div class="image-dots"></div>
                     </div>
+                </div>
+                <div class="about-text reveal">
+                    <h3 class="about-heading">I'm a Passionate <span class="gradient-text">Software Developer</span></h3>
+                    <p>
+                        With a career spanning both China and New Zealand's tech sectors, 
+                        I've evolved from a full-stack developer to an analyst developer at a leading 
+                        fintech company. My journey includes building enterprise-scale wealth management 
+                        platforms, online shopping systems, CRM/ERP systems, and educational tools.
+                    </p>
+                    <p>
+                        My expertise lies in .NET backend development, database performance optimisation, 
+                        and production issue investigation across complex platform components. I leverage 
+                        modern tools including AI-assisted development (GitHub Copilot, Claude), and explore 
+                        LLM integration and RAG approaches alongside Agile, CI/CD, and Domain-Driven Design 
+                        practices to deliver reliable solutions.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="4">0</span><span class="stat-plus">+</span>
+                            <span class="stat-label">Years of Experience</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="5">0</span><span class="stat-plus">+</span>
+                            <span class="stat-label">Projects Completed</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="1">0</span>
+                            <span class="stat-label">Academic Award</span>
+                        </div>
+                    </div>
+                    <div class="about-info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Name:</span>
+                            <span class="info-value">Nathan (Zeqi) Yin</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Email:</span>
+                            <span class="info-value">zeqiyin@aol.com</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Location:</span>
+                            <span class="info-value">Auckland, New Zealand</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Focus:</span>
+                            <span class="info-value">.NET / SQL Server / Full Stack</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn btn-primary">
+                        <span>Contact Me</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -180,91 +179,146 @@
     <!-- Skills Section -->
     <section class="section skills" id="skills">
         <div class="container">
-            <h2 class="section-title">
-                <span class="title-number">02.</span>
-                Skills & Technologies
-            </h2>
-            <p class="section-description">
-                I'm an experienced software engineer with expertise in developing scalable applications 
-                and a knack for modern web development using both backend and frontend technologies.
-            </p>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <div class="skill-icon">
+            <div class="section-header">
+                <span class="section-subtitle">What I Know</span>
+                <h2 class="section-title">My Skills</h2>
+                <div class="title-decoration">
+                    <span class="decoration-line"></span>
+                    <span class="decoration-dot"></span>
+                    <span class="decoration-line"></span>
+                </div>
+            </div>
+            <div class="skills-content">
+                <div class="skill-group reveal">
+                    <h3 class="skill-group-title">
                         <i class="fas fa-server"></i>
+                        Backend
+                    </h3>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">C# / .NET Framework / .NET Core</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="90"></div>
+                        </div>
                     </div>
-                    <h3>Backend Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">C#</span>
-                        <span class="skill-tag">.NET Framework</span>
-                        <span class="skill-tag">ASP.NET</span>
-                        <span class="skill-tag">REST APIs</span>
-                        <span class="skill-tag">Entity Framework</span>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">Python</span>
+                            <span class="skill-percent">75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="75"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">REST APIs / Entity Framework</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="85"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <div class="skill-icon">
+                <div class="skill-group reveal">
+                    <h3 class="skill-group-title">
                         <i class="fas fa-palette"></i>
+                        Frontend
+                    </h3>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">JavaScript / jQuery</span>
+                            <span class="skill-percent">88%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="88"></div>
+                        </div>
                     </div>
-                    <h3>Frontend Development</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">jQuery</span>
-                        <span class="skill-tag">HTML5</span>
-                        <span class="skill-tag">CSS3</span>
-                        <span class="skill-tag">Vue.js</span>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">React / Vue.js</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="85"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">HTML5 / CSS3 / Bootstrap</span>
+                            <span class="skill-percent">90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="90"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <div class="skill-icon">
+                <div class="skill-group reveal">
+                    <h3 class="skill-group-title">
                         <i class="fas fa-database"></i>
+                        Database & DevOps
+                    </h3>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">SQL Server / MySQL / MongoDB</span>
+                            <span class="skill-percent">85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="85"></div>
+                        </div>
                     </div>
-                    <h3>Database</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">MS SQL</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">MongoDB</span>
-                        <span class="skill-tag">Redis</span>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">GitHub / Azure DevOps / Docker</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="80"></div>
+                        </div>
                     </div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-icon">
-                        <i class="fas fa-cloud"></i>
-                    </div>
-                    <h3>DevOps & Cloud</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Git</span>
-                        <span class="skill-tag">GitHub</span>
-                        <span class="skill-tag">Azure DevOps</span>
-                        <span class="skill-tag">AWS Cloud</span>
-                        <span class="skill-tag">Jira</span>
-                        <span class="skill-tag">Nginx</span>
-                    </div>
-                </div>
-                <div class="skill-category">
-                    <div class="skill-icon">
-                        <i class="fas fa-cogs"></i>
-                    </div>
-                    <h3>Methodologies</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Agile</span>
-                        <span class="skill-tag">Scrum</span>
-                        <span class="skill-tag">CI/CD</span>
-                        <span class="skill-tag">TDD</span>
-                        <span class="skill-tag">SOLID</span>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">TeamCity / CI/CD Pipelines</span>
+                            <span class="skill-percent">78%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="78"></div>
+                        </div>
                     </div>
                 </div>
-                <div class="skill-category">
-                    <div class="skill-icon">
-                        <i class="fas fa-tools"></i>
+                <div class="skill-group reveal">
+                    <h3 class="skill-group-title">
+                        <i class="fas fa-robot"></i>
+                        Infrastructure & AI
+                    </h3>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">Linux / Windows Server / Nginx</span>
+                            <span class="skill-percent">78%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="78"></div>
+                        </div>
                     </div>
-                    <h3>Other Tools</h3>
-                    <div class="skill-tags">
-                        <span class="skill-tag">Microsoft Office</span>
-                        <span class="skill-tag">Visual Studio</span>
-                        <span class="skill-tag">VS Code</span>
-                        <span class="skill-tag">Postman</span>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">AI Dev (Copilot / LLM / RAG)</span>
+                            <span class="skill-percent">72%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="72"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar-item">
+                        <div class="skill-bar-header">
+                            <span class="skill-name">Agile / DDD / TDD / SOLID</span>
+                            <span class="skill-percent">80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-bar-fill" data-width="80"></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -274,235 +328,136 @@
     <!-- Experience Section -->
     <section class="section experience" id="experience">
         <div class="container">
-            <h2 class="section-title">
-                <span class="title-number">03.</span>
-                Work Experience
-            </h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
+            <div class="section-header">
+                <span class="section-subtitle">My Journey</span>
+                <h2 class="section-title">My Experience</h2>
+                <div class="title-decoration">
+                    <span class="decoration-line"></span>
+                    <span class="decoration-dot"></span>
+                    <span class="decoration-line"></span>
+                </div>
+            </div>
+            <div class="exp-tabs">
+                <button class="exp-tab active" data-tab="experience">
+                    <i class="fas fa-briefcase"></i> Experience
+                </button>
+                <button class="exp-tab" data-tab="education">
+                    <i class="fas fa-graduation-cap"></i> Education
+                </button>
+            </div>
+            <div class="timeline-wrapper" id="experienceTab">
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-date">
+                            <span>Apr 2024 - Present</span>
+                        </div>
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-badge">Current</div>
                             <h3 class="job-title">Analyst Developer</h3>
-                            <span class="company">FNZ Group</span>
+                            <h4 class="company"><i class="fas fa-building"></i> FNZ, Auckland, NZ</h4>
+                            <ul class="timeline-details">
+                                <li>Develop and maintain enterprise-scale investment and wealth management platform services supporting pension and financial products for global financial institutions.</li>
+                                <li>Analyse and optimise complex SQL Server stored procedures, execution plans, and indexing strategies to improve performance of large financial data processing workflows.</li>
+                                <li>Investigate complex production issues across platform components, identifying root causes in database logic, batch processing jobs, and application services.</li>
+                                <li>Contribute to .NET-based backend services and database-driven workflows supporting core investment platform operations.</li>
+                                <li>Participate in CI/CD pipelines using TeamCity, supporting automated builds, deployments, and environment stability.</li>
+                                <li>Apply AI-assisted development tools (GitHub Copilot, Claude) and prompt engineering to support code generation, debugging, and documentation, improving development productivity in day-to-day workflows.</li>
+                                <li>Explore integration of LLM APIs and Retrieval-Augmented Generation (RAG) approaches to assist with internal knowledge retrieval and documentation search within the development team.</li>
+                            </ul>
                         </div>
-                        <div class="timeline-meta">
-                            <span class="location"><i class="fas fa-map-marker-alt"></i> Auckland, New Zealand · Hybrid</span>
-                            <span class="duration"><i class="fas fa-calendar"></i> May 2024 - Present</span>
-                        </div>
-                        <ul class="timeline-details">
-                            <li>Developing and maintaining financial technology solutions for wealth management platforms.</li>
-                            <li>Collaborating with cross-functional teams to deliver high-quality software products.</li>
-                            <li>Working with modern development practices and tools in a hybrid work environment.</li>
-                        </ul>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-date">
+                            <span>Dec 2022 - Feb 2024</span>
+                        </div>
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
+                        </div>
+                        <div class="timeline-content">
                             <h3 class="job-title">Software Engineer</h3>
-                            <span class="company">Wuhan YINGJIA Technology Co., Ltd.</span>
+                            <h4 class="company"><i class="fas fa-building"></i> Wuhan YINGJIA Technology Co., Ltd., China (Hybrid)</h4>
+                            <ul class="timeline-details">
+                                <li>Deep involvement in the design and launch of multiple online shopping systems, closely aligning with strategic business objectives.</li>
+                                <li>Enhanced functionality and user experience for CRM and ERP system modules, resulting in a 30% boost in performance and 25% increase in user satisfaction.</li>
+                                <li>Employed advanced object-oriented programming techniques and three-tier architecture, enhancing operational efficiency through improved software design.</li>
+                                <li>Pioneered improvements in UI/UX design through expert application of HTML, CSS, JavaScript, Ajax, and XML, achieving a 20% enhancement in user interface design.</li>
+                            </ul>
                         </div>
-                        <div class="timeline-meta">
-                            <span class="location"><i class="fas fa-map-marker-alt"></i> Wuhan, Hubei, China · Hybrid</span>
-                            <span class="duration"><i class="fas fa-calendar"></i> December 2022 - February 2024</span>
-                        </div>
-                        <ul class="timeline-details">
-                            <li>Led the development and launch of over five innovative software products using .NET Framework and ASP.NET.</li>
-                            <li>Demonstrated expertise in .NET Framework 4.0+, developing robust, scalable solutions.</li>
-                            <li>Optimized databases and improved UI/UX design, resulting in increased efficiency and satisfaction.</li>
-                        </ul>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3 class="job-title">Assistant Tutor & Tutor</h3>
-                            <span class="company">Southern Institute of Technology</span>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-date">
+                            <span>Sep 2021 - Nov 2022</span>
                         </div>
-                        <div class="timeline-meta">
-                            <span class="location"><i class="fas fa-map-marker-alt"></i> Invercargill, Southland, New Zealand</span>
-                            <span class="duration"><i class="fas fa-calendar"></i> September 2021 - November 2022</span>
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
                         </div>
-                        <ul class="timeline-details">
-                            <li>Developed and delivered lectures on complex technical topics, aligning with industry practices.</li>
-                            <li>Mentored students in C# .NET, Git, and Microsoft Office, contributing to their success as junior developers.</li>
-                            <li>Contributed to academic research on IT development and problem-solving.</li>
-                            <li>Collaborated with peers to keep the curriculum updated with industry trends.</li>
-                        </ul>
+                        <div class="timeline-content">
+                            <h3 class="job-title">Academic Tutor</h3>
+                            <h4 class="company"><i class="fas fa-university"></i> Southern Institute of Technology, Invercargill, NZ</h4>
+                            <ul class="timeline-details">
+                                <li>Developed accessible lectures and interactive course materials on complex technical topics, aligning with current industry practices.</li>
+                                <li>Equipped students with practical skills in C# .NET and software management tools like Git, mentoring them towards successful entry-level developer roles.</li>
+                                <li>Contributed to academic journals on IT development and problem-solving, showcasing dedication to education and continuous learning.</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-marker"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-header">
-                            <h3 class="job-title">Junior Full Stack Engineer</h3>
-                            <span class="company">Guangzhou Yunxiang Store Information Technology Co., Ltd.</span>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-date">
+                            <span>Aug 2020 - Aug 2021</span>
                         </div>
-                        <div class="timeline-meta">
-                            <span class="location"><i class="fas fa-map-marker-alt"></i> Guangzhou, Guangdong, China</span>
-                            <span class="duration"><i class="fas fa-calendar"></i> August 2020 - August 2021</span>
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
                         </div>
-                        <ul class="timeline-details">
-                            <li>Engaged in the full Software Development Life Cycle, designing and implementing front-end and back-end components.</li>
-                            <li>Developed applications using Vue.js, Nginx, and various backend technologies.</li>
-                            <li>Demonstrated proficiency in database optimization and application security, managed software configurations using Git.</li>
-                        </ul>
+                        <div class="timeline-content">
+                            <h3 class="job-title">Full Stack Developer</h3>
+                            <h4 class="company"><i class="fas fa-building"></i> Guangzhou Yun Xiang Store Co., Ltd., China (Remote)</h4>
+                            <ul class="timeline-details">
+                                <li>Engaged in the full Software Development Life Cycle, designing and implementing front-end components and integrating them with back-end systems using RESTful APIs and JSON.</li>
+                                <li>Demonstrated proficiency in both front-end and server-side coding, specialising in database optimisation and application security.</li>
+                                <li>Managed software configurations effectively using Git, emphasising continuous learning of new technologies to improve system performance.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="section projects" id="projects">
-        <div class="container">
-            <h2 class="section-title">
-                <span class="title-number">04.</span>
-                Featured Projects
-            </h2>
-            <p class="section-description">
-                As a Full Stack Developer with a strong foundation in the .NET Core and .NET Framework, 
-                I excel in designing, building, and maintaining efficient, reusable, and reliable code.
-            </p>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <a href="https://admin.yunshop.yzq.nz" target="_blank" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
+            <div class="timeline-wrapper hidden" id="educationTab">
+                <div class="timeline">
+                    <div class="timeline-item reveal">
+                        <div class="timeline-date">
+                            <span>Graduated 2022</span>
                         </div>
-                        <div class="project-placeholder">
-                            <i class="fas fa-store"></i>
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
+                        </div>
+                        <div class="timeline-content">
+                            <div class="timeline-badge award">
+                                <i class="fas fa-trophy"></i> SBS Bank Award
+                            </div>
+                            <h3 class="job-title">Master of Information Technology</h3>
+                            <h4 class="company"><i class="fas fa-university"></i> Southern Institute of Technology, Invercargill, NZ</h4>
+                            <ul class="timeline-details">
+                                <li>Awarded SBS Bank Award for Academic Excellence</li>
+                                <li>Focused on software engineering and information systems</li>
+                            </ul>
                         </div>
                     </div>
-                    <div class="project-info">
-                        <h3 class="project-title">YunXiang Store Management System</h3>
-                        <p class="project-description">
-                            A comprehensive store management solution with inventory control, 
-                            sales tracking, and payment integration.
-                        </p>
-                        <div class="project-tech">
-                            <span>ASP.NET Core</span>
-                            <span>WebAPI</span>
-                            <span>Redis</span>
-                            <span>JWT</span>
+                    <div class="timeline-item reveal">
+                        <div class="timeline-date">
+                            <span>2016 - 2019</span>
                         </div>
-                        <div class="project-credentials">
-                            <small>Demo: yunshop / yunshop</small>
+                        <div class="timeline-marker">
+                            <div class="marker-dot"></div>
                         </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <a href="https://yxwms.yzq.nz" target="_blank" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                        <div class="project-placeholder">
-                            <i class="fas fa-warehouse"></i>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">YunXiang Warehouse Management</h3>
-                        <p class="project-description">
-                            Enterprise-level warehouse management with real-time inventory tracking, 
-                            order processing, and reporting.
-                        </p>
-                        <div class="project-tech">
-                            <span>.NET MVC</span>
-                            <span>SqlSugar</span>
-                            <span>Bootstrap</span>
-                            <span>AdminLTE</span>
-                        </div>
-                        <div class="project-credentials">
-                            <small>Demo: admin / 123456</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <a href="https://yxcms.yzq.nz" target="_blank" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                        <div class="project-placeholder">
-                            <i class="fas fa-newspaper"></i>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">YunXiang CMS</h3>
-                        <p class="project-description">
-                            Content management system with rich text editing, media management, 
-                            and analytics dashboard.
-                        </p>
-                        <div class="project-tech">
-                            <span>.NET 6.0</span>
-                            <span>Dapper</span>
-                            <span>Layui</span>
-                            <span>Echarts</span>
-                        </div>
-                        <div class="project-credentials">
-                            <small>Demo: admin / 123456</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <a href="https://soems.yzq.nz" target="_blank" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                        <div class="project-placeholder">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Student Online Exam System</h3>
-                        <p class="project-description">
-                            Online examination platform with automated grading, question banks, 
-                            and performance analytics.
-                        </p>
-                        <div class="project-tech">
-                            <span>ASP.NET Web Forms</span>
-                            <span>Entity Framework</span>
-                            <span>jQuery</span>
-                        </div>
-                        <div class="project-credentials">
-                            <small>Demo: admin or student_1 / 123456</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <div class="project-overlay">
-                            <a href="https://sapms.yzq.nz" target="_blank" class="project-link">
-                                <i class="fas fa-external-link-alt"></i>
-                            </a>
-                        </div>
-                        <div class="project-placeholder">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                    </div>
-                    <div class="project-info">
-                        <h3 class="project-title">Academic Performance System</h3>
-                        <p class="project-description">
-                            Comprehensive academic management with grade tracking, student analytics, 
-                            and performance reports.
-                        </p>
-                        <div class="project-tech">
-                            <span>ASP.NET</span>
-                            <span>.NET Framework</span>
-                            <span>Bootstrap</span>
-                        </div>
-                        <div class="project-credentials">
-                            <small>Demo: admin or 20221011 / 123456</small>
+                        <div class="timeline-content">
+                            <h3 class="job-title">Bachelor of Commerce</h3>
+                            <h4 class="company"><i class="fas fa-university"></i> Southern Institute of Technology</h4>
+                            <ul class="timeline-details">
+                                <li>Invercargill, Southland, New Zealand</li>
+                                <li>Studied business management and commerce fundamentals</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
@@ -510,41 +465,147 @@
         </div>
     </section>
 
-    <!-- Education Section -->
-    <section class="section education" id="education">
+    <!-- Portfolio Section -->
+    <section class="section portfolio" id="projects">
         <div class="container">
-            <h2 class="section-title">
-                <span class="title-number">05.</span>
-                Education
-            </h2>
-            <div class="education-grid">
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <div class="education-content">
-                        <h3 class="degree">Master of Information Technology</h3>
-                        <p class="school">Southern Institute of Technology</p>
-                        <div class="education-meta">
-                            <span><i class="fas fa-map-marker-alt"></i> Invercargill, New Zealand</span>
-                            <span><i class="fas fa-calendar"></i> Graduated 2022</span>
-                        </div>
-                        <div class="education-award">
-                            <i class="fas fa-trophy"></i>
-                            <span>SBS Bank Award for Academic Excellence</span>
+            <div class="section-header">
+                <span class="section-subtitle">My Work</span>
+                <h2 class="section-title">My Portfolio</h2>
+                <div class="title-decoration">
+                    <span class="decoration-line"></span>
+                    <span class="decoration-dot"></span>
+                    <span class="decoration-line"></span>
+                </div>
+            </div>
+            <div class="portfolio-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="enterprise">Enterprise</button>
+                <button class="filter-btn" data-filter="web">Web App</button>
+                <button class="filter-btn" data-filter="education">Education</button>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item reveal" data-category="enterprise">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <span class="portfolio-category">Enterprise</span>
+                                    <h3>YunXiang Store Management</h3>
+                                    <p>Comprehensive store management with inventory control, sales tracking, and payments.</p>
+                                    <div class="overlay-links">
+                                        <a href="https://admin.yunshop.yzq.nz" target="_blank" class="overlay-link">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-tech">
+                                        <span>ASP.NET Core</span><span>WebAPI</span><span>Redis</span><span>JWT</span>
+                                    </div>
+                                    <div class="portfolio-demo">Demo: yunshop / yunshop</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="education-card">
-                    <div class="education-icon">
-                        <i class="fas fa-user-graduate"></i>
+                <div class="portfolio-item reveal" data-category="enterprise">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <i class="fas fa-warehouse"></i>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <span class="portfolio-category">Enterprise</span>
+                                    <h3>YunXiang Warehouse Management</h3>
+                                    <p>Enterprise-level warehouse management with real-time inventory and reporting.</p>
+                                    <div class="overlay-links">
+                                        <a href="https://yxwms.yzq.nz" target="_blank" class="overlay-link">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-tech">
+                                        <span>.NET MVC</span><span>SqlSugar</span><span>Bootstrap</span><span>AdminLTE</span>
+                                    </div>
+                                    <div class="portfolio-demo">Demo: admin / 123456</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="education-content">
-                        <h3 class="degree">Bachelor of Commerce</h3>
-                        <p class="school">Southern Institute of Technology</p>
-                        <div class="education-meta">
-                            <span><i class="fas fa-map-marker-alt"></i> Invercargill, New Zealand</span>
-                            <span><i class="fas fa-calendar"></i> Graduated 2019</span>
+                </div>
+                <div class="portfolio-item reveal" data-category="web">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <span class="portfolio-category">Web App</span>
+                                    <h3>YunXiang CMS</h3>
+                                    <p>Content management system with rich text editing, media, and analytics.</p>
+                                    <div class="overlay-links">
+                                        <a href="https://yxcms.yzq.nz" target="_blank" class="overlay-link">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-tech">
+                                        <span>.NET 6.0</span><span>Dapper</span><span>Layui</span><span>Echarts</span>
+                                    </div>
+                                    <div class="portfolio-demo">Demo: admin / 123456</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal" data-category="education">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <span class="portfolio-category">Education</span>
+                                    <h3>Student Online Exam System</h3>
+                                    <p>Online exam platform with automated grading and performance analytics.</p>
+                                    <div class="overlay-links">
+                                        <a href="https://soems.yzq.nz" target="_blank" class="overlay-link">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-tech">
+                                        <span>ASP.NET</span><span>Entity Framework</span><span>jQuery</span>
+                                    </div>
+                                    <div class="portfolio-demo">Demo: admin or student_1 / 123456</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item reveal" data-category="education">
+                    <div class="portfolio-card">
+                        <div class="portfolio-image">
+                            <div class="portfolio-placeholder">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="portfolio-overlay">
+                                <div class="overlay-content">
+                                    <span class="portfolio-category">Education</span>
+                                    <h3>Academic Performance System</h3>
+                                    <p>Academic management with grade tracking and performance reports.</p>
+                                    <div class="overlay-links">
+                                        <a href="https://sapms.yzq.nz" target="_blank" class="overlay-link">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                    </div>
+                                    <div class="portfolio-tech">
+                                        <span>ASP.NET</span><span>.NET Framework</span><span>Bootstrap</span>
+                                    </div>
+                                    <div class="portfolio-demo">Demo: admin or 20221011 / 123456</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -555,75 +616,60 @@
     <!-- Contact Section -->
     <section class="section contact" id="contact">
         <div class="container">
-            <h2 class="section-title">
-                <span class="title-number">06.</span>
-                Get In Touch
-            </h2>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <h3>Let's Connect!</h3>
-                    <p>
-                        I'm always interested in hearing about new opportunities, 
-                        interesting projects, or just having a chat about technology.
-                    </p>
-                    <div class="contact-details">
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Location</h4>
-                                <p>Auckland CBD, Auckland 1010</p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Email</h4>
-                                <p><a href="mailto:zeqiyin@aol.com">zeqiyin@aol.com</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="contact-text">
-                                <h4>Phone</h4>
-                                <p>02 113344 06</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-social">
-                        <a href="https://github.com/Zechee" target="_blank" class="social-btn">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/zeqiyin/" target="_blank" class="social-btn">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="mailto:zeqiyin@aol.com" class="social-btn">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
+            <div class="section-header">
+                <span class="section-subtitle">Reach Out</span>
+                <h2 class="section-title">Contact Me</h2>
+                <div class="title-decoration">
+                    <span class="decoration-line"></span>
+                    <span class="decoration-dot"></span>
+                    <span class="decoration-line"></span>
                 </div>
-                <div class="contact-form-wrapper">
+            </div>
+            <div class="contact-intro">
+                <h3>Get In Touch</h3>
+                <p>If you have questions, feel free to enquire using the contact form or reach out directly through the following contact details.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info reveal">
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h4>Email</h4>
+                        <p><a href="mailto:zeqiyin@aol.com">zeqiyin@aol.com</a></p>
+                    </div>
+                    <div class="contact-card">
+                        <div class="contact-card-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <h4>Location</h4>
+                        <p>Auckland CBD, Auckland 1010</p>
+                    </div>
+
+                </div>
+                <div class="contact-form-wrapper reveal">
                     <form class="contact-form" id="contactForm" action="https://formspree.io/f/xjvnooaz" method="POST">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                <span class="form-icon"><i class="fas fa-user"></i></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
+                                <span class="form-icon"><i class="fas fa-envelope"></i></span>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="text" name="subject" placeholder="Subject" required>
+                            <span class="form-icon"><i class="fas fa-tag"></i></span>
                         </div>
                         <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
+                            <span class="form-icon textarea-icon"><i class="fas fa-comment-dots"></i></span>
                         </div>
                         <button type="submit" class="btn btn-primary btn-full">
+                            <span>Send Message</span>
                             <i class="fas fa-paper-plane"></i>
-                            Send Message
                         </button>
                     </form>
                 </div>
@@ -634,16 +680,51 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
-                <p class="footer-text">
-                    Designed & Built by <span class="gradient-text">Nathan Yin</span>
-                </p>
-                <p class="footer-copyright">
-                    © 2025 All Rights Reserved
-                </p>
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="#" class="footer-logo">
+                        <span class="logo-icon"><i class="fas fa-code"></i></span>
+                        <span class="logo-text">Nathan<span class="logo-dot">.</span></span>
+                    </a>
+                    <p>Passionate software developer focused on building scalable, high-performance applications. Based in Auckland, New Zealand.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/Zechee" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/zeqiyin/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="mailto:zeqiyin@aol.com"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Portfolio</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Expertise</h4>
+                    <ul>
+                        <li><a href="#skills">.NET / C# Development</a></li>
+                        <li><a href="#skills">React.js / Vue.js</a></li>
+                        <li><a href="#skills">SQL Server / Database</a></li>
+                        <li><a href="#skills">CI/CD / DevOps</a></li>
+                        <li><a href="#skills">AI-Assisted Development</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Designed & Built by <span class="gradient-text">Nathan Yin</span> &copy; 2026. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
+
+    <!-- Back to Top -->
+    <a href="#home" class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </a>
 
     <script src="script.js"></script>
 </body>

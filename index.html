@@ -8,33 +8,39 @@
     <link rel="apple-touch-icon" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Particles Canvas -->
-    <canvas id="particlesCanvas"></canvas>
-    
-    <!-- Cursor Glow Effect -->
-    <div class="cursor-glow" id="cursorGlow"></div>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-outline" id="cursorOutline"></div>
+
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="#" class="nav-logo">
-                <span class="logo-icon"><i class="fas fa-code"></i></span>
-                <span class="logo-text">Nathan<span class="logo-dot">.</span></span>
+                <span class="logo-bracket">&lt;</span>
+                <span class="logo-text">Nathan</span>
+                <span class="logo-slash"> /</span>
+                <span class="logo-bracket">&gt;</span>
             </a>
             <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link active">Home</a>
-                <a href="#about" class="nav-link">About</a>
-                <a href="#skills" class="nav-link">Skills</a>
-                <a href="#experience" class="nav-link">Experience</a>
-                <a href="#projects" class="nav-link">Portfolio</a>
-                <a href="#contact" class="nav-link">Contact</a>
+                <a href="#home" class="nav-link active" data-magnetic>Home</a>
+                <a href="#about" class="nav-link" data-magnetic>About</a>
+                <a href="#skills" class="nav-link" data-magnetic>Skills</a>
+                <a href="#experience" class="nav-link" data-magnetic>Experience</a>
+                <a href="#projects" class="nav-link" data-magnetic>Portfolio</a>
+                <a href="#contact" class="nav-link" data-magnetic>Contact</a>
             </div>
-            <button class="nav-toggle" id="navToggle">
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -42,282 +48,310 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ==================== HERO SECTION ==================== -->
     <section class="hero" id="home">
-        <div class="hero-bg">
-            <div class="hero-gradient-orb orb-1"></div>
-            <div class="hero-gradient-orb orb-2"></div>
-            <div class="hero-gradient-orb orb-3"></div>
+        <div class="hero-grid-bg"></div>
+        <div class="hero-gradient-sphere sphere-1"></div>
+        <div class="hero-gradient-sphere sphere-2"></div>
+        <div class="hero-gradient-sphere sphere-3"></div>
+
+        <!-- Floating Code Elements -->
+        <div class="floating-elements">
+            <span class="float-code" style="--delay: 0s; --x: 8%; --y: 20%;">&lt;/&gt;</span>
+            <span class="float-code" style="--delay: 2s; --x: 85%; --y: 15%;">{ }</span>
+            <span class="float-code" style="--delay: 4s; --x: 75%; --y: 70%;">const</span>
+            <span class="float-code" style="--delay: 1s; --x: 12%; --y: 75%;">async</span>
+            <span class="float-code" style="--delay: 3s; --x: 90%; --y: 45%;">=&gt;</span>
+            <span class="float-code" style="--delay: 5s; --x: 50%; --y: 85%;">( )</span>
+            <span class="float-code" style="--delay: 1.5s; --x: 30%; --y: 10%;">npm</span>
+            <span class="float-code" style="--delay: 3.5s; --x: 65%; --y: 25%;">.NET</span>
         </div>
+
         <div class="hero-content">
-            <div class="hero-badge">
-                <span class="badge-dot"></span>
-                Available for Work
+            <div class="hero-badge" data-animate="fade-up" data-delay="0">
+                <span class="badge-pulse"></span>
+                <span>Available for Work</span>
             </div>
-            <p class="hero-greeting">Hello, I'm</p>
-            <h1 class="hero-title">
-                <span class="title-line">Nathan <span class="gradient-text">Yin</span></span>
+            <p class="hero-greeting" data-animate="fade-up" data-delay="100">Hello, I'm</p>
+            <h1 class="hero-name" data-animate="fade-up" data-delay="200">
+                <span class="name-nathan">Nathan</span>
+                <span class="name-yin">Yin</span>
             </h1>
-            <h2 class="hero-role">
-                <span class="typing-text" id="typingText"></span>
-                <span class="cursor">|</span>
-            </h2>
-            <p class="hero-description">
-                Passionate software developer with 4+ years of experience in .NET and full-stack development. 
-                Expertise in C#, Python, JavaScript, SQL, and cloud technologies. Familiar with LLM integration, 
-                RAG pipelines, and AI-assisted development. Currently building enterprise-scale wealth management 
+            <div class="hero-role" data-animate="fade-up" data-delay="300">
+                <span class="role-text" id="roleText"></span>
+                <span class="role-cursor">_</span>
+            </div>
+            <p class="hero-description" data-animate="fade-up" data-delay="400">
+                Passionate software developer with 4+ years of experience in .NET and full-stack development.
+                Expertise in C#, Python, JavaScript, SQL, and cloud technologies. Familiar with LLM integration,
+                RAG pipelines, and AI-assisted development. Currently building enterprise-scale wealth management
                 platforms as an Analyst Developer at FNZ in Auckland.
             </p>
-            <div class="hero-cta">
-                <a href="#contact" class="btn btn-primary">
-                    <span>Get In Touch</span>
-                    <i class="fas fa-arrow-right"></i>
+            <div class="hero-buttons" data-animate="fade-up" data-delay="500">
+                <a href="#contact" class="btn btn-primary" data-magnetic>
+                    <span class="btn-text">Get In Touch</span>
+                    <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                    <span class="btn-glow"></span>
                 </a>
-                <a href="#experience" class="btn btn-outline">
-                    <span>View Experience</span>
-                    <i class="fas fa-briefcase"></i>
+                <a href="#experience" class="btn btn-ghost" data-magnetic>
+                    <span class="btn-text">View Experience</span>
+                    <span class="btn-icon"><i class="fas fa-briefcase"></i></span>
                 </a>
             </div>
-            <div class="hero-social">
-                <a href="https://github.com/Zechee" target="_blank" class="social-link" title="GitHub">
+            <div class="hero-social" data-animate="fade-up" data-delay="600">
+                <a href="https://github.com/Zechee" target="_blank" class="social-icon" data-magnetic title="GitHub">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/zeqiyin/" target="_blank" class="social-link" title="LinkedIn">
+                <a href="https://www.linkedin.com/in/zeqiyin/" target="_blank" class="social-icon" data-magnetic title="LinkedIn">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
-                <a href="mailto:zeqiyin@aol.com" class="social-link" title="Email">
+                <a href="mailto:zeqiyin@aol.com" class="social-icon" data-magnetic title="Email">
                     <i class="fas fa-envelope"></i>
                 </a>
             </div>
         </div>
-        <div class="hero-scroll">
-            <div class="mouse">
-                <div class="mouse-wheel"></div>
+
+        <div class="scroll-indicator" data-animate="fade-up" data-delay="800">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
             </div>
-            <span>Scroll Down</span>
+            <span class="scroll-text">Scroll Down</span>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="section about" id="about">
+    <!-- ==================== ABOUT SECTION ==================== -->
+    <section class="section" id="about">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Who I Am</span>
-                <h2 class="section-title">About Me</h2>
-                <div class="title-decoration">
-                    <span class="decoration-line"></span>
-                    <span class="decoration-dot"></span>
-                    <span class="decoration-line"></span>
-                </div>
+                <span class="section-tag" data-animate="fade-up">&lt;about&gt;</span>
+                <h2 class="section-title" data-animate="fade-up" data-delay="100">About Me</h2>
+                <div class="section-line" data-animate="scale-x" data-delay="200"></div>
             </div>
-            <div class="about-content">
-                <div class="about-image reveal">
-                    <div class="image-wrapper">
-                        <div class="image-placeholder">
+            <div class="about-grid">
+                <div class="about-visual" data-animate="fade-right">
+                    <div class="about-image-frame">
+                        <div class="about-avatar">
                             <i class="fas fa-user-astronaut"></i>
                         </div>
-                        <div class="image-border"></div>
-                        <div class="image-dots"></div>
+                        <div class="frame-border"></div>
+                        <div class="frame-corner frame-corner-tl"></div>
+                        <div class="frame-corner frame-corner-tr"></div>
+                        <div class="frame-corner frame-corner-bl"></div>
+                        <div class="frame-corner frame-corner-br"></div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card" data-animate="fade-up" data-delay="200">
+                            <span class="stat-num" data-count="4">0</span><span class="stat-suffix">+</span>
+                            <span class="stat-label">Years Exp</span>
+                        </div>
+                        <div class="stat-card" data-animate="fade-up" data-delay="300">
+                            <span class="stat-num" data-count="5">0</span><span class="stat-suffix">+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-card" data-animate="fade-up" data-delay="400">
+                            <span class="stat-num" data-count="1">0</span>
+                            <span class="stat-label">Award</span>
+                        </div>
                     </div>
                 </div>
-                <div class="about-text reveal">
-                    <h3 class="about-heading">I'm a Passionate <span class="gradient-text">Software Developer</span></h3>
-                    <p>
-                        With a career spanning both China and New Zealand's tech sectors, 
-                        I've evolved from a full-stack developer to an analyst developer at a leading 
-                        fintech company. My journey includes building enterprise-scale wealth management 
+                <div class="about-content" data-animate="fade-left">
+                    <h3 class="about-heading">
+                        I'm a Passionate <span class="text-gradient">Software Developer</span>
+                    </h3>
+                    <p class="about-text">
+                        With a career spanning both China and New Zealand's tech sectors,
+                        I've evolved from a full-stack developer to an analyst developer at a leading
+                        fintech company. My journey includes building enterprise-scale wealth management
                         platforms, online shopping systems, CRM/ERP systems, and educational tools.
                     </p>
-                    <p>
-                        My expertise lies in .NET backend development, database performance optimisation, 
-                        and production issue investigation across complex platform components. I leverage 
-                        modern tools including AI-assisted development (GitHub Copilot, Claude), and explore 
-                        LLM integration and RAG approaches alongside Agile, CI/CD, and Domain-Driven Design 
+                    <p class="about-text">
+                        My expertise lies in .NET backend development, database performance optimisation,
+                        and production issue investigation across complex platform components. I leverage
+                        modern tools including AI-assisted development (GitHub Copilot, Claude), and explore
+                        LLM integration and RAG approaches alongside Agile, CI/CD, and Domain-Driven Design
                         practices to deliver reliable solutions.
                     </p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="4">0</span><span class="stat-plus">+</span>
-                            <span class="stat-label">Years of Experience</span>
+                    <div class="about-info">
+                        <div class="info-row">
+                            <span class="info-key">Name</span>
+                            <span class="info-val">Nathan (Zeqi) Yin</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="5">0</span><span class="stat-plus">+</span>
-                            <span class="stat-label">Projects Completed</span>
+                        <div class="info-row">
+                            <span class="info-key">Email</span>
+                            <span class="info-val">zeqiyin@aol.com</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="1">0</span>
-                            <span class="stat-label">Academic Award</span>
+                        <div class="info-row">
+                            <span class="info-key">Location</span>
+                            <span class="info-val">Auckland, New Zealand</span>
                         </div>
-                    </div>
-                    <div class="about-info-grid">
-                        <div class="info-item">
-                            <span class="info-label">Name:</span>
-                            <span class="info-value">Nathan (Zeqi) Yin</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Email:</span>
-                            <span class="info-value">zeqiyin@aol.com</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Location:</span>
-                            <span class="info-value">Auckland, New Zealand</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Focus:</span>
-                            <span class="info-value">.NET / SQL Server / Full Stack</span>
+                        <div class="info-row">
+                            <span class="info-key">Focus</span>
+                            <span class="info-val">.NET / SQL Server / Full Stack</span>
                         </div>
                     </div>
-                    <a href="#contact" class="btn btn-primary">
-                        <span>Contact Me</span>
-                        <i class="fas fa-arrow-right"></i>
+                    <a href="#contact" class="btn btn-primary" data-magnetic>
+                        <span class="btn-text">Contact Me</span>
+                        <span class="btn-icon"><i class="fas fa-arrow-right"></i></span>
+                        <span class="btn-glow"></span>
                     </a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
-    <section class="section skills" id="skills">
+    <!-- ==================== SKILLS SECTION ==================== -->
+    <section class="section section-alt" id="skills">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">What I Know</span>
-                <h2 class="section-title">My Skills</h2>
-                <div class="title-decoration">
-                    <span class="decoration-line"></span>
-                    <span class="decoration-dot"></span>
-                    <span class="decoration-line"></span>
-                </div>
+                <span class="section-tag" data-animate="fade-up">&lt;skills&gt;</span>
+                <h2 class="section-title" data-animate="fade-up" data-delay="100">My Skills</h2>
+                <div class="section-line" data-animate="scale-x" data-delay="200"></div>
             </div>
-            <div class="skills-content">
-                <div class="skill-group reveal">
-                    <h3 class="skill-group-title">
+            <div class="skills-grid">
+                <div class="skill-card" data-animate="fade-up" data-delay="0" data-tilt>
+                    <div class="skill-card-glow"></div>
+                    <div class="skill-icon" style="--accent: #6366f1;">
                         <i class="fas fa-server"></i>
-                        Backend
-                    </h3>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">C# / .NET Framework / .NET Core</span>
-                            <span class="skill-percent">90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="90"></div>
-                        </div>
                     </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">Python</span>
-                            <span class="skill-percent">75%</span>
+                    <h3 class="skill-title">Backend</h3>
+                    <div class="skill-bars">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>C# / .NET Framework / .NET Core</span>
+                                <span class="skill-pct">90%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="90" style="--bar-color: #6366f1;"></div>
+                            </div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="75"></div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Python</span>
+                                <span class="skill-pct">75%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="75" style="--bar-color: #6366f1;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">REST APIs / Entity Framework</span>
-                            <span class="skill-percent">85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="85"></div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>REST APIs / Entity Framework</span>
+                                <span class="skill-pct">85%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="85" style="--bar-color: #6366f1;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="skill-group reveal">
-                    <h3 class="skill-group-title">
+
+                <div class="skill-card" data-animate="fade-up" data-delay="100" data-tilt>
+                    <div class="skill-card-glow"></div>
+                    <div class="skill-icon" style="--accent: #06b6d4;">
                         <i class="fas fa-palette"></i>
-                        Frontend
-                    </h3>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">JavaScript / jQuery</span>
-                            <span class="skill-percent">88%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="88"></div>
-                        </div>
                     </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">React / Vue.js</span>
-                            <span class="skill-percent">85%</span>
+                    <h3 class="skill-title">Frontend</h3>
+                    <div class="skill-bars">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>JavaScript / jQuery</span>
+                                <span class="skill-pct">88%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="88" style="--bar-color: #06b6d4;"></div>
+                            </div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="85"></div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>React / Vue.js</span>
+                                <span class="skill-pct">85%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="85" style="--bar-color: #06b6d4;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">HTML5 / CSS3 / Bootstrap</span>
-                            <span class="skill-percent">90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="90"></div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>HTML5 / CSS3 / Bootstrap</span>
+                                <span class="skill-pct">90%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="90" style="--bar-color: #06b6d4;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="skill-group reveal">
-                    <h3 class="skill-group-title">
+
+                <div class="skill-card" data-animate="fade-up" data-delay="200" data-tilt>
+                    <div class="skill-card-glow"></div>
+                    <div class="skill-icon" style="--accent: #10b981;">
                         <i class="fas fa-database"></i>
-                        Database & DevOps
-                    </h3>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">SQL Server / MySQL / MongoDB</span>
-                            <span class="skill-percent">85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="85"></div>
-                        </div>
                     </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">GitHub / Azure DevOps / Docker</span>
-                            <span class="skill-percent">80%</span>
+                    <h3 class="skill-title">Database & DevOps</h3>
+                    <div class="skill-bars">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>SQL Server / MySQL / MongoDB</span>
+                                <span class="skill-pct">85%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="85" style="--bar-color: #10b981;"></div>
+                            </div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="80"></div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>GitHub / Azure DevOps / Docker</span>
+                                <span class="skill-pct">80%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="80" style="--bar-color: #10b981;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">TeamCity / CI/CD Pipelines</span>
-                            <span class="skill-percent">78%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="78"></div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>TeamCity / CI/CD Pipelines</span>
+                                <span class="skill-pct">78%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="78" style="--bar-color: #10b981;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="skill-group reveal">
-                    <h3 class="skill-group-title">
+
+                <div class="skill-card" data-animate="fade-up" data-delay="300" data-tilt>
+                    <div class="skill-card-glow"></div>
+                    <div class="skill-icon" style="--accent: #f43f5e;">
                         <i class="fas fa-robot"></i>
-                        Infrastructure & AI
-                    </h3>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">Linux / Windows Server / Nginx</span>
-                            <span class="skill-percent">78%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="78"></div>
-                        </div>
                     </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">AI Dev (Copilot / LLM / RAG)</span>
-                            <span class="skill-percent">72%</span>
+                    <h3 class="skill-title">Infrastructure & AI</h3>
+                    <div class="skill-bars">
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Linux / Windows Server / Nginx</span>
+                                <span class="skill-pct">78%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="78" style="--bar-color: #f43f5e;"></div>
+                            </div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="72"></div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>AI Dev (Copilot / LLM / RAG)</span>
+                                <span class="skill-pct">72%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="72" style="--bar-color: #f43f5e;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="skill-bar-item">
-                        <div class="skill-bar-header">
-                            <span class="skill-name">Agile / DDD / TDD / SOLID</span>
-                            <span class="skill-percent">80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-bar-fill" data-width="80"></div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span>Agile / DDD / TDD / SOLID</span>
+                                <span class="skill-pct">80%</span>
+                            </div>
+                            <div class="skill-track">
+                                <div class="skill-fill" data-width="80" style="--bar-color: #f43f5e;"></div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -325,285 +359,288 @@
         </div>
     </section>
 
-    <!-- Experience Section -->
-    <section class="section experience" id="experience">
+    <!-- ==================== EXPERIENCE SECTION ==================== -->
+    <section class="section" id="experience">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">My Journey</span>
-                <h2 class="section-title">My Experience</h2>
-                <div class="title-decoration">
-                    <span class="decoration-line"></span>
-                    <span class="decoration-dot"></span>
-                    <span class="decoration-line"></span>
-                </div>
+                <span class="section-tag" data-animate="fade-up">&lt;experience&gt;</span>
+                <h2 class="section-title" data-animate="fade-up" data-delay="100">My Experience</h2>
+                <div class="section-line" data-animate="scale-x" data-delay="200"></div>
             </div>
-            <div class="exp-tabs">
-                <button class="exp-tab active" data-tab="experience">
+
+            <div class="exp-tabs" data-animate="fade-up" data-delay="200">
+                <button class="exp-tab active" data-tab="work">
                     <i class="fas fa-briefcase"></i> Experience
                 </button>
-                <button class="exp-tab" data-tab="education">
+                <button class="exp-tab" data-tab="edu">
                     <i class="fas fa-graduation-cap"></i> Education
                 </button>
             </div>
-            <div class="timeline-wrapper" id="experienceTab">
-                <div class="timeline">
-                    <div class="timeline-item reveal">
-                        <div class="timeline-date">
-                            <span>Apr 2024 - Present</span>
-                        </div>
-                        <div class="timeline-marker">
-                            <div class="marker-dot"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="timeline-badge">Current</div>
-                            <h3 class="job-title">Analyst Developer</h3>
-                            <h4 class="company"><i class="fas fa-building"></i> FNZ, Auckland, NZ</h4>
-                            <ul class="timeline-details">
-                                <li>Develop and maintain enterprise-scale investment and wealth management platform services supporting pension and financial products for global financial institutions.</li>
-                                <li>Analyse and optimise complex SQL Server stored procedures, execution plans, and indexing strategies to improve performance of large financial data processing workflows.</li>
-                                <li>Investigate complex production issues across platform components, identifying root causes in database logic, batch processing jobs, and application services.</li>
-                                <li>Contribute to .NET-based backend services and database-driven workflows supporting core investment platform operations.</li>
-                                <li>Participate in CI/CD pipelines using TeamCity, supporting automated builds, deployments, and environment stability.</li>
-                                <li>Apply AI-assisted development tools (GitHub Copilot, Claude) and prompt engineering to support code generation, debugging, and documentation, improving development productivity in day-to-day workflows.</li>
-                                <li>Explore integration of LLM APIs and Retrieval-Augmented Generation (RAG) approaches to assist with internal knowledge retrieval and documentation search within the development team.</li>
-                            </ul>
-                        </div>
+
+            <div class="timeline-container" id="workTimeline">
+                <div class="timeline-line">
+                    <div class="timeline-line-fill"></div>
+                </div>
+
+                <div class="timeline-entry" data-animate="fade-left" data-delay="0">
+                    <div class="timeline-dot">
+                        <div class="dot-ring"></div>
                     </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-date">
-                            <span>Dec 2022 - Feb 2024</span>
+                    <div class="timeline-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="timeline-meta">
+                            <span class="timeline-date">Apr 2024 - Present</span>
+                            <span class="timeline-badge-current">Current</span>
                         </div>
-                        <div class="timeline-marker">
-                            <div class="marker-dot"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3 class="job-title">Software Engineer</h3>
-                            <h4 class="company"><i class="fas fa-building"></i> Wuhan YINGJIA Technology Co., Ltd., China (Hybrid)</h4>
-                            <ul class="timeline-details">
-                                <li>Deep involvement in the design and launch of multiple online shopping systems, closely aligning with strategic business objectives.</li>
-                                <li>Enhanced functionality and user experience for CRM and ERP system modules, resulting in a 30% boost in performance and 25% increase in user satisfaction.</li>
-                                <li>Employed advanced object-oriented programming techniques and three-tier architecture, enhancing operational efficiency through improved software design.</li>
-                                <li>Pioneered improvements in UI/UX design through expert application of HTML, CSS, JavaScript, Ajax, and XML, achieving a 20% enhancement in user interface design.</li>
-                            </ul>
-                        </div>
+                        <h3 class="timeline-role">Analyst Developer</h3>
+                        <h4 class="timeline-company"><i class="fas fa-building"></i> FNZ, Auckland, NZ</h4>
+                        <ul class="timeline-details">
+                            <li>Develop and maintain enterprise-scale investment and wealth management platform services supporting pension and financial products for global financial institutions.</li>
+                            <li>Analyse and optimise complex SQL Server stored procedures, execution plans, and indexing strategies to improve performance of large financial data processing workflows.</li>
+                            <li>Investigate complex production issues across platform components, identifying root causes in database logic, batch processing jobs, and application services.</li>
+                            <li>Contribute to .NET-based backend services and database-driven workflows supporting core investment platform operations.</li>
+                            <li>Participate in CI/CD pipelines using TeamCity, supporting automated builds, deployments, and environment stability.</li>
+                            <li>Apply AI-assisted development tools (GitHub Copilot, Claude) and prompt engineering to support code generation, debugging, and documentation, improving development productivity in day-to-day workflows.</li>
+                            <li>Explore integration of LLM APIs and Retrieval-Augmented Generation (RAG) approaches to assist with internal knowledge retrieval and documentation search within the development team.</li>
+                        </ul>
                     </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-date">
-                            <span>Sep 2021 - Nov 2022</span>
-                        </div>
-                        <div class="timeline-marker">
-                            <div class="marker-dot"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <h3 class="job-title">Academic Tutor</h3>
-                            <h4 class="company"><i class="fas fa-university"></i> Southern Institute of Technology, Invercargill, NZ</h4>
-                            <ul class="timeline-details">
-                                <li>Developed accessible lectures and interactive course materials on complex technical topics, aligning with current industry practices.</li>
-                                <li>Equipped students with practical skills in C# .NET and software management tools like Git, mentoring them towards successful entry-level developer roles.</li>
-                                <li>Contributed to academic journals on IT development and problem-solving, showcasing dedication to education and continuous learning.</li>
-                            </ul>
-                        </div>
+                </div>
+
+                <div class="timeline-entry" data-animate="fade-right" data-delay="100">
+                    <div class="timeline-dot">
+                        <div class="dot-ring"></div>
                     </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-date">
-                            <span>Aug 2020 - Aug 2021</span>
+                    <div class="timeline-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="timeline-meta">
+                            <span class="timeline-date">Dec 2022 - Feb 2024</span>
                         </div>
-                        <div class="timeline-marker">
-                            <div class="marker-dot"></div>
+                        <h3 class="timeline-role">Software Engineer</h3>
+                        <h4 class="timeline-company"><i class="fas fa-building"></i> Wuhan YINGJIA Technology Co., Ltd., China (Hybrid)</h4>
+                        <ul class="timeline-details">
+                            <li>Deep involvement in the design and launch of multiple online shopping systems, closely aligning with strategic business objectives.</li>
+                            <li>Enhanced functionality and user experience for CRM and ERP system modules, resulting in a 30% boost in performance and 25% increase in user satisfaction.</li>
+                            <li>Employed advanced object-oriented programming techniques and three-tier architecture, enhancing operational efficiency through improved software design.</li>
+                            <li>Pioneered improvements in UI/UX design through expert application of HTML, CSS, JavaScript, Ajax, and XML, achieving a 20% enhancement in user interface design.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-entry" data-animate="fade-left" data-delay="200">
+                    <div class="timeline-dot">
+                        <div class="dot-ring"></div>
+                    </div>
+                    <div class="timeline-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="timeline-meta">
+                            <span class="timeline-date">Sep 2021 - Nov 2022</span>
                         </div>
-                        <div class="timeline-content">
-                            <h3 class="job-title">Full Stack Developer</h3>
-                            <h4 class="company"><i class="fas fa-building"></i> Guangzhou Yun Xiang Store Co., Ltd., China (Remote)</h4>
-                            <ul class="timeline-details">
-                                <li>Engaged in the full Software Development Life Cycle, designing and implementing front-end components and integrating them with back-end systems using RESTful APIs and JSON.</li>
-                                <li>Demonstrated proficiency in both front-end and server-side coding, specialising in database optimisation and application security.</li>
-                                <li>Managed software configurations effectively using Git, emphasising continuous learning of new technologies to improve system performance.</li>
-                            </ul>
+                        <h3 class="timeline-role">Academic Tutor</h3>
+                        <h4 class="timeline-company"><i class="fas fa-university"></i> Southern Institute of Technology, Invercargill, NZ</h4>
+                        <ul class="timeline-details">
+                            <li>Developed accessible lectures and interactive course materials on complex technical topics, aligning with current industry practices.</li>
+                            <li>Equipped students with practical skills in C# .NET and software management tools like Git, mentoring them towards successful entry-level developer roles.</li>
+                            <li>Contributed to academic journals on IT development and problem-solving, showcasing dedication to education and continuous learning.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-entry" data-animate="fade-right" data-delay="300">
+                    <div class="timeline-dot">
+                        <div class="dot-ring"></div>
+                    </div>
+                    <div class="timeline-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="timeline-meta">
+                            <span class="timeline-date">Aug 2020 - Aug 2021</span>
                         </div>
+                        <h3 class="timeline-role">Full Stack Developer</h3>
+                        <h4 class="timeline-company"><i class="fas fa-building"></i> Guangzhou Yun Xiang Store Co., Ltd., China (Remote)</h4>
+                        <ul class="timeline-details">
+                            <li>Engaged in the full Software Development Life Cycle, designing and implementing front-end components and integrating them with back-end systems using RESTful APIs and JSON.</li>
+                            <li>Demonstrated proficiency in both front-end and server-side coding, specialising in database optimisation and application security.</li>
+                            <li>Managed software configurations effectively using Git, emphasising continuous learning of new technologies to improve system performance.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="timeline-wrapper hidden" id="educationTab">
-                <div class="timeline">
-                    <div class="timeline-item reveal">
-                        <div class="timeline-date">
-                            <span>Graduated 2022</span>
-                        </div>
-                        <div class="timeline-marker">
-                            <div class="marker-dot"></div>
-                        </div>
-                        <div class="timeline-content">
-                            <div class="timeline-badge award">
-                                <i class="fas fa-trophy"></i> SBS Bank Award
-                            </div>
-                            <h3 class="job-title">Master of Information Technology</h3>
-                            <h4 class="company"><i class="fas fa-university"></i> Southern Institute of Technology, Invercargill, NZ</h4>
-                            <ul class="timeline-details">
-                                <li>Awarded SBS Bank Award for Academic Excellence</li>
-                                <li>Focused on software engineering and information systems</li>
-                            </ul>
-                        </div>
+
+            <div class="timeline-container hidden" id="eduTimeline">
+                <div class="timeline-line">
+                    <div class="timeline-line-fill"></div>
+                </div>
+
+                <div class="timeline-entry" data-animate="fade-left" data-delay="0">
+                    <div class="timeline-dot">
+                        <div class="dot-ring"></div>
                     </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-date">
-                            <span>2016 - 2019</span>
+                    <div class="timeline-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="timeline-meta">
+                            <span class="timeline-date">Graduated 2022</span>
+                            <span class="timeline-badge-award"><i class="fas fa-trophy"></i> SBS Bank Award</span>
                         </div>
-                        <div class="timeline-marker">
-                            <div class="marker-dot"></div>
+                        <h3 class="timeline-role">Master of Information Technology</h3>
+                        <h4 class="timeline-company"><i class="fas fa-university"></i> Southern Institute of Technology, Invercargill, NZ</h4>
+                        <ul class="timeline-details">
+                            <li>Awarded SBS Bank Award for Academic Excellence</li>
+                            <li>Focused on software engineering and information systems</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="timeline-entry" data-animate="fade-right" data-delay="100">
+                    <div class="timeline-dot">
+                        <div class="dot-ring"></div>
+                    </div>
+                    <div class="timeline-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="timeline-meta">
+                            <span class="timeline-date">2016 - 2019</span>
                         </div>
-                        <div class="timeline-content">
-                            <h3 class="job-title">Bachelor of Commerce</h3>
-                            <h4 class="company"><i class="fas fa-university"></i> Southern Institute of Technology</h4>
-                            <ul class="timeline-details">
-                                <li>Invercargill, Southland, New Zealand</li>
-                                <li>Studied business management and commerce fundamentals</li>
-                            </ul>
-                        </div>
+                        <h3 class="timeline-role">Bachelor of Commerce</h3>
+                        <h4 class="timeline-company"><i class="fas fa-university"></i> Southern Institute of Technology</h4>
+                        <ul class="timeline-details">
+                            <li>Invercargill, Southland, New Zealand</li>
+                            <li>Studied business management and commerce fundamentals</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section class="section portfolio" id="projects">
+    <!-- ==================== PORTFOLIO SECTION ==================== -->
+    <section class="section section-alt" id="projects">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">My Work</span>
-                <h2 class="section-title">My Portfolio</h2>
-                <div class="title-decoration">
-                    <span class="decoration-line"></span>
-                    <span class="decoration-dot"></span>
-                    <span class="decoration-line"></span>
-                </div>
+                <span class="section-tag" data-animate="fade-up">&lt;portfolio&gt;</span>
+                <h2 class="section-title" data-animate="fade-up" data-delay="100">My Portfolio</h2>
+                <div class="section-line" data-animate="scale-x" data-delay="200"></div>
             </div>
-            <div class="portfolio-filters">
+
+            <div class="portfolio-filters" data-animate="fade-up" data-delay="200">
                 <button class="filter-btn active" data-filter="all">All</button>
                 <button class="filter-btn" data-filter="enterprise">Enterprise</button>
                 <button class="filter-btn" data-filter="web">Web App</button>
                 <button class="filter-btn" data-filter="education">Education</button>
             </div>
+
             <div class="portfolio-grid">
-                <div class="portfolio-item reveal" data-category="enterprise">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <i class="fas fa-store"></i>
-                            </div>
-                            <div class="portfolio-overlay">
-                                <div class="overlay-content">
-                                    <span class="portfolio-category">Enterprise</span>
+                <div class="portfolio-item" data-category="enterprise" data-animate="fade-up" data-delay="0">
+                    <div class="portfolio-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="portfolio-preview">
+                            <div class="preview-icon"><i class="fas fa-store"></i></div>
+                            <div class="preview-overlay">
+                                <div class="overlay-inner">
+                                    <span class="portfolio-cat">Enterprise</span>
                                     <h3>YunXiang Store Management</h3>
                                     <p>Comprehensive store management with inventory control, sales tracking, and payments.</p>
-                                    <div class="overlay-links">
-                                        <a href="https://admin.yunshop.yzq.nz" target="_blank" class="overlay-link">
-                                            <i class="fas fa-external-link-alt"></i>
-                                        </a>
-                                    </div>
-                                    <div class="portfolio-tech">
+                                    <div class="portfolio-tags">
                                         <span>ASP.NET Core</span><span>WebAPI</span><span>Redis</span><span>JWT</span>
                                     </div>
-                                    <div class="portfolio-demo">Demo: yunshop / yunshop</div>
+                                    <div class="portfolio-demo-info">Demo: yunshop / yunshop</div>
+                                    <a href="https://admin.yunshop.yzq.nz" target="_blank" class="portfolio-link">
+                                        <span>View Project</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item reveal" data-category="enterprise">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <i class="fas fa-warehouse"></i>
-                            </div>
-                            <div class="portfolio-overlay">
-                                <div class="overlay-content">
-                                    <span class="portfolio-category">Enterprise</span>
+
+                <div class="portfolio-item" data-category="enterprise" data-animate="fade-up" data-delay="100">
+                    <div class="portfolio-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="portfolio-preview">
+                            <div class="preview-icon"><i class="fas fa-warehouse"></i></div>
+                            <div class="preview-overlay">
+                                <div class="overlay-inner">
+                                    <span class="portfolio-cat">Enterprise</span>
                                     <h3>YunXiang Warehouse Management</h3>
                                     <p>Enterprise-level warehouse management with real-time inventory and reporting.</p>
-                                    <div class="overlay-links">
-                                        <a href="https://yxwms.yzq.nz" target="_blank" class="overlay-link">
-                                            <i class="fas fa-external-link-alt"></i>
-                                        </a>
-                                    </div>
-                                    <div class="portfolio-tech">
+                                    <div class="portfolio-tags">
                                         <span>.NET MVC</span><span>SqlSugar</span><span>Bootstrap</span><span>AdminLTE</span>
                                     </div>
-                                    <div class="portfolio-demo">Demo: admin / 123456</div>
+                                    <div class="portfolio-demo-info">Demo: admin / 123456</div>
+                                    <a href="https://yxwms.yzq.nz" target="_blank" class="portfolio-link">
+                                        <span>View Project</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item reveal" data-category="web">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <i class="fas fa-newspaper"></i>
-                            </div>
-                            <div class="portfolio-overlay">
-                                <div class="overlay-content">
-                                    <span class="portfolio-category">Web App</span>
+
+                <div class="portfolio-item" data-category="web" data-animate="fade-up" data-delay="200">
+                    <div class="portfolio-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="portfolio-preview">
+                            <div class="preview-icon"><i class="fas fa-newspaper"></i></div>
+                            <div class="preview-overlay">
+                                <div class="overlay-inner">
+                                    <span class="portfolio-cat">Web App</span>
                                     <h3>YunXiang CMS</h3>
                                     <p>Content management system with rich text editing, media, and analytics.</p>
-                                    <div class="overlay-links">
-                                        <a href="https://yxcms.yzq.nz" target="_blank" class="overlay-link">
-                                            <i class="fas fa-external-link-alt"></i>
-                                        </a>
-                                    </div>
-                                    <div class="portfolio-tech">
+                                    <div class="portfolio-tags">
                                         <span>.NET 6.0</span><span>Dapper</span><span>Layui</span><span>Echarts</span>
                                     </div>
-                                    <div class="portfolio-demo">Demo: admin / 123456</div>
+                                    <div class="portfolio-demo-info">Demo: admin / 123456</div>
+                                    <a href="https://yxcms.yzq.nz" target="_blank" class="portfolio-link">
+                                        <span>View Project</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item reveal" data-category="education">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <i class="fas fa-graduation-cap"></i>
-                            </div>
-                            <div class="portfolio-overlay">
-                                <div class="overlay-content">
-                                    <span class="portfolio-category">Education</span>
+
+                <div class="portfolio-item" data-category="education" data-animate="fade-up" data-delay="300">
+                    <div class="portfolio-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="portfolio-preview">
+                            <div class="preview-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div class="preview-overlay">
+                                <div class="overlay-inner">
+                                    <span class="portfolio-cat">Education</span>
                                     <h3>Student Online Exam System</h3>
                                     <p>Online exam platform with automated grading and performance analytics.</p>
-                                    <div class="overlay-links">
-                                        <a href="https://soems.yzq.nz" target="_blank" class="overlay-link">
-                                            <i class="fas fa-external-link-alt"></i>
-                                        </a>
-                                    </div>
-                                    <div class="portfolio-tech">
+                                    <div class="portfolio-tags">
                                         <span>ASP.NET</span><span>Entity Framework</span><span>jQuery</span>
                                     </div>
-                                    <div class="portfolio-demo">Demo: admin or student_1 / 123456</div>
+                                    <div class="portfolio-demo-info">Demo: admin or student_1 / 123456</div>
+                                    <a href="https://soems.yzq.nz" target="_blank" class="portfolio-link">
+                                        <span>View Project</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item reveal" data-category="education">
-                    <div class="portfolio-card">
-                        <div class="portfolio-image">
-                            <div class="portfolio-placeholder">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div class="portfolio-overlay">
-                                <div class="overlay-content">
-                                    <span class="portfolio-category">Education</span>
+
+                <div class="portfolio-item" data-category="education" data-animate="fade-up" data-delay="400">
+                    <div class="portfolio-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="portfolio-preview">
+                            <div class="preview-icon"><i class="fas fa-chart-line"></i></div>
+                            <div class="preview-overlay">
+                                <div class="overlay-inner">
+                                    <span class="portfolio-cat">Education</span>
                                     <h3>Academic Performance System</h3>
                                     <p>Academic management with grade tracking and performance reports.</p>
-                                    <div class="overlay-links">
-                                        <a href="https://sapms.yzq.nz" target="_blank" class="overlay-link">
-                                            <i class="fas fa-external-link-alt"></i>
-                                        </a>
-                                    </div>
-                                    <div class="portfolio-tech">
+                                    <div class="portfolio-tags">
                                         <span>ASP.NET</span><span>.NET Framework</span><span>Bootstrap</span>
                                     </div>
-                                    <div class="portfolio-demo">Demo: admin or 20221011 / 123456</div>
+                                    <div class="portfolio-demo-info">Demo: admin or 20221011 / 123456</div>
+                                    <a href="https://sapms.yzq.nz" target="_blank" class="portfolio-link">
+                                        <span>View Project</span>
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -613,63 +650,67 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section class="section contact" id="contact">
+    <!-- ==================== CONTACT SECTION ==================== -->
+    <section class="section" id="contact">
         <div class="container">
             <div class="section-header">
-                <span class="section-subtitle">Reach Out</span>
-                <h2 class="section-title">Contact Me</h2>
-                <div class="title-decoration">
-                    <span class="decoration-line"></span>
-                    <span class="decoration-dot"></span>
-                    <span class="decoration-line"></span>
-                </div>
+                <span class="section-tag" data-animate="fade-up">&lt;contact&gt;</span>
+                <h2 class="section-title" data-animate="fade-up" data-delay="100">Contact Me</h2>
+                <div class="section-line" data-animate="scale-x" data-delay="200"></div>
             </div>
-            <div class="contact-intro">
+
+            <div class="contact-intro" data-animate="fade-up" data-delay="200">
                 <h3>Get In Touch</h3>
                 <p>If you have questions, feel free to enquire using the contact form or reach out directly through the following contact details.</p>
             </div>
-            <div class="contact-content">
-                <div class="contact-info reveal">
-                    <div class="contact-card">
-                        <div class="contact-card-icon">
+
+            <div class="contact-grid">
+                <div class="contact-info" data-animate="fade-right">
+                    <div class="contact-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="contact-icon">
                             <i class="fas fa-envelope"></i>
                         </div>
                         <h4>Email</h4>
                         <p><a href="mailto:zeqiyin@aol.com">zeqiyin@aol.com</a></p>
                     </div>
-                    <div class="contact-card">
-                        <div class="contact-card-icon">
+                    <div class="contact-card" data-tilt>
+                        <div class="card-glow"></div>
+                        <div class="contact-icon">
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
                         <h4>Location</h4>
                         <p>Auckland CBD, Auckland 1010</p>
                     </div>
-
                 </div>
-                <div class="contact-form-wrapper reveal">
+                <div class="contact-form-wrap" data-animate="fade-left">
                     <form class="contact-form" id="contactForm" action="https://formspree.io/f/xjvnooaz" method="POST">
                         <div class="form-row">
-                            <div class="form-group">
-                                <input type="text" id="name" name="name" placeholder="Your Name" required>
-                                <span class="form-icon"><i class="fas fa-user"></i></span>
+                            <div class="form-field">
+                                <input type="text" name="name" placeholder=" " required>
+                                <label>Your Name</label>
+                                <span class="field-line"></span>
                             </div>
-                            <div class="form-group">
-                                <input type="email" id="email" name="email" placeholder="Your Email" required>
-                                <span class="form-icon"><i class="fas fa-envelope"></i></span>
+                            <div class="form-field">
+                                <input type="email" name="email" placeholder=" " required>
+                                <label>Your Email</label>
+                                <span class="field-line"></span>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="subject" placeholder="Subject" required>
-                            <span class="form-icon"><i class="fas fa-tag"></i></span>
+                        <div class="form-field">
+                            <input type="text" name="subject" placeholder=" " required>
+                            <label>Subject</label>
+                            <span class="field-line"></span>
                         </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" rows="5" placeholder="Message" required></textarea>
-                            <span class="form-icon textarea-icon"><i class="fas fa-comment-dots"></i></span>
+                        <div class="form-field">
+                            <textarea name="message" rows="5" placeholder=" " required></textarea>
+                            <label>Message</label>
+                            <span class="field-line"></span>
                         </div>
-                        <button type="submit" class="btn btn-primary btn-full">
-                            <span>Send Message</span>
-                            <i class="fas fa-paper-plane"></i>
+                        <button type="submit" class="btn btn-primary btn-full" data-magnetic>
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-icon"><i class="fas fa-paper-plane"></i></span>
+                            <span class="btn-glow"></span>
                         </button>
                     </form>
                 </div>
@@ -677,20 +718,22 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ==================== FOOTER ==================== -->
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
                     <a href="#" class="footer-logo">
-                        <span class="logo-icon"><i class="fas fa-code"></i></span>
-                        <span class="logo-text">Nathan<span class="logo-dot">.</span></span>
+                        <span class="logo-bracket">&lt;</span>
+                        <span class="logo-text">Nathan</span>
+                        <span class="logo-slash"> /</span>
+                        <span class="logo-bracket">&gt;</span>
                     </a>
                     <p>Passionate software developer focused on building scalable, high-performance applications. Based in Auckland, New Zealand.</p>
                     <div class="footer-social">
-                        <a href="https://github.com/Zechee" target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/zeqiyin/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="mailto:zeqiyin@aol.com"><i class="fas fa-envelope"></i></a>
+                        <a href="https://github.com/Zechee" target="_blank" data-magnetic><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/zeqiyin/" target="_blank" data-magnetic><i class="fab fa-linkedin-in"></i></a>
+                        <a href="mailto:zeqiyin@aol.com" data-magnetic><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -716,7 +759,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Designed & Built by <span class="gradient-text">Nathan Yin</span> &copy; 2026. All Rights Reserved.</p>
+                <p>Designed & Built by <span class="text-gradient">Nathan Yin</span> &copy; 2026. All Rights Reserved.</p>
             </div>
         </div>
     </footer>

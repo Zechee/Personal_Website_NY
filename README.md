@@ -1,51 +1,27 @@
-# Nathan Yin - Personal Portfolio Website
+# Nathan Yin — Personal Portfolio
 
-A modern, responsive personal portfolio website built with pure HTML, CSS, and JavaScript.
+The source for [yzq.nz](https://yzq.nz), Nathan Yin’s personal software engineering portfolio.
 
-## 🚀 Live Demo
+## About the site
 
-Visit: [https://zeqiyin.github.io/Personal_Website_NY](https://zeqiyin.github.io/Personal_Website_NY)
+The site is a lightweight, framework-free single page built with semantic HTML, modern CSS, and vanilla JavaScript. It features:
 
-## ✨ Features
+- Responsive editorial layouts for desktop, tablet, and mobile
+- Canvas-based profile visualisation and subtle pointer interactions
+- Accessible navigation, accordions, forms, and reduced-motion support
+- Selected experience and open-source project work
+- Social sharing metadata, sitemap, and custom GitHub Pages domain
 
-- **Modern Design**: Clean and professional layout with smooth animations
-- **Fully Responsive**: Works seamlessly on desktop, tablet, and mobile devices
-- **Interactive Elements**: Typing animation, cursor glow effect, scroll reveals
-- **Performance Optimized**: No frameworks, pure vanilla code for fast loading
-- **SEO Friendly**: Semantic HTML structure
+## Local preview
 
-## 🛠️ Technologies Used
+Serve the repository with any static file server, for example:
 
-- HTML5
-- CSS3 (Custom Properties, Flexbox, Grid, Animations)
-- Vanilla JavaScript (ES6+)
-- Font Awesome Icons
-- Google Fonts (Inter, Fira Code)
-
-## 📁 Project Structure
-
-```
-Personal_Website_NY/
-├── index.html      # Main HTML file
-├── styles.css      # All styles
-├── script.js       # JavaScript functionality
-└── README.md       # This file
+```bash
+python3 -m http.server 8000
 ```
 
-## 🚀 Deployment
+Then open `http://localhost:8000`.
 
-This site is deployed using GitHub Pages. To deploy your own:
+## Deployment
 
-1. Fork this repository
-2. Go to Settings > Pages
-3. Select "main" branch as source
-4. Your site will be live at `https://yourusername.github.io/Personal_Website_NY`
-
-## 📧 Contact
-
-- **Email**: zeqiyin@aol.com
-- **Location**: Auckland, New Zealand
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+GitHub Pages publishes the root of the `main` branch to [yzq.nz](https://yzq.nz). The custom domain is preserved by `CNAME`.
